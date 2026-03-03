@@ -1,9 +1,33 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 217.2 91.2% 59.8%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 263.4 70% 50.4%;
+    --radius: 1.25rem;
+  }
+
+  .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -23,7 +47,6 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 263.4 70% 50.4%;
-    --radius: 1.25rem;
   }
 }
 
@@ -32,7 +55,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:bg-primary/30 antialiased;
+    @apply bg-background text-foreground selection:bg-primary/30 antialiased transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -47,20 +70,20 @@
 }
 
 .outline-text:hover {
-  color: white;
+  color: hsl(var(--foreground));
   -webkit-text-stroke: 0px transparent;
 }
 
 .glass {
-  @apply bg-background/60 backdrop-blur-xl border border-white/10;
+  @apply bg-background/60 backdrop-blur-xl border border-border;
 }
 
 .glass-card {
-  @apply bg-secondary/20 backdrop-blur-md border border-white/5 hover:border-white/10 transition-all duration-500;
+  @apply bg-secondary/20 backdrop-blur-md border border-border hover:border-primary/50 transition-all duration-500;
 }
 
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50;
+  @apply bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50;
 }
 
 .hero-grid {
@@ -92,10 +115,9 @@
 }
 
 .bento-grid {
-  display: grid;
+  @apply grid gap-6;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(150px, auto);
-  gap: 1.5rem;
 }
 
 @media (max-width: 1024px) {

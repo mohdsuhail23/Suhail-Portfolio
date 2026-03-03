@@ -1,6 +1,11 @@
+
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Terminal, Code2, Cpu } from "lucide-react";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const TECH_STACK = [
   "Next.js", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", 
@@ -8,8 +13,10 @@ const TECH_STACK = [
 ];
 
 export function Hero() {
+  const profileImg = PlaceHolderImages.find(img => img.id === "profile-photo")?.imageUrl || "https://picsum.photos/seed/dev-portrait/600/800";
+
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4 text-center">
+    <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4">
       {/* Background Layer */}
       <div className="absolute inset-0 hero-grid -z-10 opacity-40" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-20 pointer-events-none">
@@ -17,63 +24,86 @@ export function Hero() {
         <div className="absolute bottom-[20%] right-[10%] w-[50%] h-[50%] bg-accent/20 rounded-full blur-[180px]" />
       </div>
 
-      <div className="max-w-6xl space-y-10 relative z-10">
-        <div className="flex flex-col items-center gap-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase text-primary animate-in fade-in slide-in-from-top-4 duration-1000">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            Available for new projects
-          </div>
-
-          <h1 className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter leading-[0.8] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
-            CRAFTING <br /> DIGITAL <br /> <span className="text-primary italic">FRONTIERS.</span>
-          </h1>
-
-          <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            A Senior Software Architect dedicated to building 
-            ultra-performance web systems and scalable AI-driven 
-            infrastructure.
-          </p>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-          <Button asChild size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 group bg-primary hover:bg-primary/90 shadow-[0_0_40px_rgba(139,92,246,0.3)]">
-            <Link href="/projects">
-              Explore Works
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 glass-card hover:bg-white/5">
-            <Link href="/contact">
-              Let's Connect
-            </Link>
-          </Button>
-        </div>
-
-        {/* Floating Icons Decor */}
-        <div className="hidden lg:block">
-          <div className="absolute top-20 -left-20 p-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-xl -rotate-12 animate-bounce duration-[3000ms]">
-            <Code2 className="h-8 w-8 text-primary" />
-          </div>
-          <div className="absolute bottom-40 -right-20 p-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-xl rotate-12 animate-bounce duration-[4000ms]">
-            <Cpu className="h-8 w-8 text-accent" />
-          </div>
-          <div className="absolute top-60 -right-10 p-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-xl -rotate-6 animate-pulse">
-            <Terminal className="h-6 w-6 text-muted-foreground" />
-          </div>
-        </div>
-
-        {/* Tech Marquee */}
-        <div className="pt-24 overflow-hidden w-full relative">
-          <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-20 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default">
-            {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-              <span key={i} className="text-4xl md:text-5xl font-black tracking-tighter uppercase italic outline-text">
-                {tech}
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="space-y-10 text-center lg:text-left">
+          <div className="flex flex-col items-center lg:items-start gap-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase text-primary animate-in fade-in slide-in-from-top-4 duration-1000">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-            ))}
+              Available for new projects
+            </div>
+
+            <h1 className="text-6xl sm:text-7xl md:text-8xl xl:text-9xl font-black tracking-tighter leading-[0.8] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
+              CRAFTING <br /> DIGITAL <br /> <span className="text-primary italic">FRONTIERS.</span>
+            </h1>
+
+            <p className="max-w-xl text-lg md:text-xl text-muted-foreground font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+              A Senior Software Architect dedicated to building 
+              ultra-performance web systems and scalable AI-driven 
+              infrastructure.
+            </p>
           </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+            <Button asChild size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 group bg-primary hover:bg-primary/90 shadow-[0_0_40px_rgba(139,92,246,0.3)]">
+              <Link href="/projects">
+                Explore Works
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 glass-card hover:bg-foreground/5">
+              <Link href="/contact">
+                Let's Connect
+              </Link>
+            </Button>
+          </div>
+        </div>
+
+        {/* Modern Profile Photo Container */}
+        <div className="relative flex justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-1000 delay-500">
+          <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group">
+            <Image
+              src={profileImg}
+              alt="Professional Portrait"
+              fill
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+              priority
+              data-ai-hint="professional portrait"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Overlay Info Card */}
+            <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <div className="flex justify-between items-end">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Lead Architect</p>
+                  <h4 className="text-xl font-bold tracking-tighter">Alex Sterling</h4>
+                </div>
+                <div className="flex gap-2">
+                   <div className="w-8 h-8 rounded-lg bg-foreground/10 flex items-center justify-center">
+                      <Code2 className="h-4 w-4" />
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Decorative Elements */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[80px] -z-10" />
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px] -z-10" />
+        </div>
+      </div>
+
+      {/* Tech Marquee */}
+      <div className="mt-32 overflow-hidden w-full relative">
+        <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-20 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default">
+          {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
+            <span key={i} className="text-4xl md:text-5xl font-black tracking-tighter uppercase italic outline-text">
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </section>
