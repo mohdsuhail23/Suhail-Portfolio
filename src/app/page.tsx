@@ -21,9 +21,21 @@ export default async function Home() {
     console.warn("Failed to fetch projects from Sanity, using mock data.", error);
   }
 
-  // Fallback to mock data if Sanity returns empty
-  const displayProjects = projects.length > 0 ? projects : MOCK_PROJECTS;
-  const featuredProjects = displayProjects.filter((p) => p.featured);
+  // Fallback to mock data if Sanity returns absolutely nothing
+  const hasSanityData = projects.length > 0;
+  const displayProjects = hasSanityData ? projects : MOCK_PROJECTS;
+  
+  // Filter for featured projects
+  let featuredProjects = displayProjects.filter((p) => p.featured);
+  
+  /**
+   * UX Improvement: If the user has added projects to Sanity but 
+   * hasn't checked the "Featured" box yet, we should still show 
+   * the latest work on the home page instead of an empty section.
+   */
+  if (featuredProjects.length === 0) {
+    featuredProjects = displayProjects.slice(0, 2);
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
