@@ -1,4 +1,5 @@
-import { Code2, Globe, Laptop, Rocket, Zap, Shield, User, Layers } from "lucide-react";
+
+import { Globe, User, Layers, Zap, Shield } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function About() {
@@ -29,7 +30,7 @@ export function About() {
               </p>
             </div>
             <div className="pt-8 flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-primary">
-              <Globe className="h-4 w-4" /> Based in Austin, TX • Remote Friendly
+              <Globe className="h-4 w-4" /> Global Delivery • Remote First
             </div>
           </div>
 

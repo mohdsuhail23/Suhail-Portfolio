@@ -4,7 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Terminal, Code2, Cpu } from "lucide-react";
+import { ArrowRight, Code2 } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const TECH_STACK = [
@@ -79,7 +79,7 @@ export function Hero() {
               <div className="flex justify-between items-end">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Lead Architect</p>
-                  <h4 className="text-xl font-bold tracking-tighter">Alex Sterling</h4>
+                  <h4 className="text-xl font-bold tracking-tighter">Senior Engineer</h4>
                 </div>
                 <div className="flex gap-2">
                    <div className="w-8 h-8 rounded-lg bg-foreground/10 flex items-center justify-center">
