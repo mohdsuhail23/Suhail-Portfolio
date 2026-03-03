@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectGrid } from "@/components/ProjectGrid";
 import { Button } from "@/components/ui/button";
 import { MOCK_PROJECTS } from "@/lib/mock-data";
 import Link from "next/link";
@@ -20,7 +20,9 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="flex items-end justify-between mb-12">
               <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-black">Selected <span className="text-primary">Works</span></h2>
+                <h2 className="text-4xl md:text-5xl font-black">
+                  Selected <span className="text-primary">Works</span>
+                </h2>
                 <p className="text-muted-foreground max-w-lg">
                   A collection of projects that demonstrate my technical expertise 
                   and approach to building production-grade software.
@@ -33,11 +35,7 @@ export default function Home() {
               </Button>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-              {featuredProjects.map((project) => (
-                <ProjectCard key={project._id} project={project} />
-              ))}
-            </div>
+            <ProjectGrid projects={featuredProjects} columns={2} />
 
             <div className="mt-12 flex justify-center md:hidden">
               <Button asChild variant="outline" className="w-full">

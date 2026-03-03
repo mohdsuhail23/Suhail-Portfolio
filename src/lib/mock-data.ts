@@ -1,11 +1,16 @@
 import { Project, Experience } from "@/types";
+import { PlaceHolderImages } from "./placeholder-images";
+
+const getPlaceholderImage = (id: string) => {
+  return PlaceHolderImages.find(img => img.id === id)?.imageUrl || `https://picsum.photos/seed/${id}/800/600`;
+};
 
 export const MOCK_PROJECTS: Project[] = [
   {
     _id: "1",
     title: "AI Predictive Analytics Dashboard",
     slug: { current: "ai-dashboard" },
-    mainImage: "https://picsum.photos/seed/dashboard/800/600",
+    mainImage: getPlaceholderImage("project-1"),
     summary: "A high-performance enterprise dashboard leveraging machine learning to predict market trends in real-time.",
     technologies: ["Next.js", "Python", "TensorFlow", "Tailwind CSS"],
     projectLink: "https://demo.example.com",
@@ -15,24 +20,24 @@ export const MOCK_PROJECTS: Project[] = [
   },
   {
     _id: "2",
-    title: "EcoConnect Social Platform",
-    slug: { current: "ecoconnect" },
-    mainImage: "https://picsum.photos/seed/eco/800/600",
-    summary: "Sustainable living social network with real-time carbon footprint tracking and community challenges.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
-    projectLink: "https://ecoconnect.example.com",
-    githubLink: "https://github.com/example/ecoconnect",
+    title: "E-Commerce Performance Suite",
+    slug: { current: "ecommerce-suite" },
+    mainImage: getPlaceholderImage("project-2"),
+    summary: "Scalable e-commerce infrastructure with real-time inventory management and server-side rendering for optimal SEO.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Next.js"],
+    projectLink: "https://shop.example.com",
+    githubLink: "https://github.com/example/ecommerce",
     featured: true,
     publishedAt: "2023-11-20T00:00:00Z"
   },
   {
     _id: "3",
-    title: "CryptoFlow Wallet",
-    slug: { current: "cryptoflow" },
-    mainImage: "https://picsum.photos/seed/crypto/800/600",
-    summary: "Secure decentralized finance wallet with support for multiple chains and integrated DEX swapping.",
-    technologies: ["TypeScript", "Solidity", "Ethers.js", "Web3"],
-    githubLink: "https://github.com/example/cryptoflow",
+    title: "Collaborative Design Interface",
+    slug: { current: "design-tool" },
+    mainImage: getPlaceholderImage("project-3"),
+    summary: "Real-time collaborative design environment built for distributed teams with complex vector manipulation.",
+    technologies: ["TypeScript", "Canvas API", "WebSockets", "Rust"],
+    githubLink: "https://github.com/example/design-tool",
     featured: false,
     publishedAt: "2023-08-10T00:00:00Z"
   }

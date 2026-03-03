@@ -33,9 +33,25 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   if (!project) notFound();
 
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": project.title,
+    "description": project.summary,
+    "programmingLanguage": project.technologies,
+    "codeRepository": project.githubLink || undefined,
+    "url": project.projectLink || undefined,
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+      </head>
       <main className="flex-grow pb-24">
         {/* Project Hero */}
         <div className="relative h-[50vh] min-h-[400px] w-full">
@@ -74,7 +90,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   This project was designed with scalability and performance at its core. 
                   Leveraging modern architectural patterns, it addresses high-concurrency 
                   challenges while maintaining a seamless user experience. 
-                  (In a production app, this would be fetched as Portable Text from Sanity).
+                </p>
+                <p>
+                  Key features include highly optimized data fetching, atomic design components,
+                  and a rigorous focus on accessibility (WCAG 2.1 compliance).
                 </p>
               </div>
             </section>

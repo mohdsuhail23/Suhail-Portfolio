@@ -19,66 +19,64 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 w-full glass border-b">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-primary p-1.5 rounded-lg text-primary-foreground group-hover:rotate-12 transition-transform">
-                <Code2 className="h-6 w-6" />
-              </div>
-              <span className="font-headline font-bold text-xl tracking-tighter">
-                DevSphere
-              </span>
-            </Link>
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <nav className="w-full max-w-fit glass rounded-full px-4 h-14 flex items-center gap-6 shadow-2xl shadow-black/50 border-white/10">
+        <Link href="/" className="flex items-center gap-2 group pr-2 border-r border-white/10">
+          <div className="bg-primary p-1.5 rounded-full text-primary-foreground group-hover:rotate-12 transition-transform">
+            <Code2 className="h-4 w-4" />
           </div>
-          
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
-                    pathname === link.href
-                      ? "text-primary border-b-2 border-primary rounded-none"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground"
+          <span className="font-headline font-bold text-sm tracking-tighter hidden sm:inline-block">
+            DevSphere
+          </span>
+        </Link>
+        
+        <div className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={cn(
+                "px-4 py-1.5 text-xs font-semibold transition-all rounded-full hover:bg-white/5",
+                pathname === link.href
+                  ? "bg-white/10 text-white shadow-inner"
+                  : "text-muted-foreground hover:text-white"
+              )}
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+              {link.name}
+            </Link>
+          ))}
         </div>
-      </div>
 
-      {/* Mobile Menu */}
+        <div className="md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-foreground h-8 w-8 hover:bg-white/5 rounded-full"
+          >
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </Button>
+        </div>
+
+        <Button asChild size="sm" className="hidden sm:flex rounded-full px-6 text-xs font-bold h-8">
+          <Link href="/contact">Hire Me</Link>
+        </Button>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg border-b">
-          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+        <div className="fixed inset-0 top-20 z-40 md:hidden bg-background/80 backdrop-blur-xl p-6">
+          <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "block px-3 py-2 text-base font-medium",
+                  "text-2xl font-bold tracking-tighter p-4 rounded-2xl transition-all",
                   pathname === link.href
-                    ? "text-primary bg-primary/10 rounded-md"
-                    : "text-muted-foreground hover:bg-accent hover:text-foreground rounded-md"
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:text-white hover:bg-white/5"
                 )}
               >
                 {link.name}
@@ -87,6 +85,6 @@ export function Navbar() {
           </div>
         </div>
       )}
-    </nav>
+    </div>
   );
 }

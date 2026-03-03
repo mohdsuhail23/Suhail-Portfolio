@@ -1,54 +1,66 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Github } from "lucide-react";
+import { ArrowRight, Download, Github, Terminal, Sparkles, Zap, Shield, Cpu } from "lucide-react";
+
+const TECH_STACK = [
+  "Next.js", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", 
+  "AWS", "Docker", "Tailwind", "Python", "Rust", "GenAI"
+];
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center overflow-hidden py-24 md:py-32 lg:py-48 px-4 text-center">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[120px]" />
+    <section className="relative flex flex-col items-center justify-center overflow-hidden pt-44 pb-24 px-4 text-center hero-gradient">
+      <div className="max-w-5xl space-y-12 relative z-10">
+        <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-primary/80 backdrop-blur-md animate-in fade-in slide-in-from-top-4 duration-1000">
+          <Sparkles className="h-3 w-3 fill-primary" />
+          Building High-Performance Systems
+        </div>
+
+        <div className="space-y-6">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
+            ENGINEERING <br /> <span className="text-primary">DIGITAL</span> EXCELLENCE.
+          </h1>
+
+          <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+            Full-stack architect specializing in high-concurrency 
+            web ecosystems. I bridge the gap between complex 
+            infrastructure and world-class user experiences.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+          <Button asChild size="lg" className="rounded-full px-10 h-14 text-base font-bold gap-3 group bg-primary hover:bg-primary/90">
+            <Link href="/projects">
+              Selected Works
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="rounded-full px-10 h-14 text-base font-bold gap-3 glass-card hover:bg-white/5">
+            <Link href="/contact">
+              Let's Talk
+            </Link>
+          </Button>
+        </div>
+
+        {/* Tech Marquee */}
+        <div className="pt-20 overflow-hidden w-full relative group">
+          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex whitespace-nowrap animate-marquee gap-12 items-center opacity-30 group-hover:opacity-60 transition-opacity">
+            {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
+              <span key={i} className="text-2xl font-black tracking-tighter uppercase italic">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="max-w-4xl space-y-8">
-        <div className="inline-flex items-center gap-2 rounded-full border bg-muted/50 px-3 py-1 text-sm font-medium text-muted-foreground">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          Available for new opportunities
-        </div>
-
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9]">
-          Architecting the <span className="gradient-text">Future</span> of Web.
-        </h1>
-
-        <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground font-body">
-          Specialized in high-performance full-stack applications with Next.js, 
-          Node.js, and TypeScript. I transform complex business requirements 
-          into elegant, scalable solutions.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button asChild size="lg" className="rounded-full px-8 gap-2 group">
-            <Link href="/projects">
-              View My Work
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="rounded-full px-8 gap-2">
-            <Link href="/contact">
-              Get in Touch
-            </Link>
-          </Button>
-          <Button asChild variant="ghost" size="lg" className="rounded-full px-8 gap-2">
-            <Link href="#" target="_blank">
-              <Download className="h-4 w-4" />
-              Download CV
-            </Link>
-          </Button>
-        </div>
+      {/* Background decoration */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] left-[10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[160px] animate-pulse" />
+        <div className="absolute bottom-[20%] right-[10%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[160px]" />
       </div>
     </section>
   );
