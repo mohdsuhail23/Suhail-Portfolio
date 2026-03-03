@@ -1,8 +1,9 @@
+
 "use client";
 
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, ArrowRight, Send } from "lucide-react";
+import { Mail, Github, Linkedin, ArrowRight, Send, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +12,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { submitContactForm } from "@/app/actions/contact";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -20,6 +23,8 @@ const formSchema = z.object({
 
 export default function ContactPage() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,13 +34,32 @@ export default function ContactPage() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("Form values:", values);
-    toast({
-      title: "Message Sent Successfully",
-      description: "Thanks for reaching out! I'll get back to you within 24 hours.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      const result = await submitContactForm(values);
+      if (result.success) {
+        toast({
+          title: "Message Sent Successfully",
+          description: result.message,
+        });
+        form.reset();
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Submission Error",
+          description: result.message,
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -100,7 +124,7 @@ export default function ContactPage() {
                     <FormItem>
                       <FormLabel className="text-sm font-bold uppercase tracking-wider opacity-70">Full Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} className="bg-background/50 h-12 rounded-xl" />
+                        <Input placeholder="John Doe" {...field} className="bg-background/50 h-12 rounded-xl" disabled={isSubmitting} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -113,7 +137,7 @@ export default function ContactPage() {
                     <FormItem>
                       <FormLabel className="text-sm font-bold uppercase tracking-wider opacity-70">Email Address</FormLabel>
                       <FormControl>
-                        <Input placeholder="john@example.com" {...field} className="bg-background/50 h-12 rounded-xl" />
+                        <Input placeholder="john@example.com" {...field} className="bg-background/50 h-12 rounded-xl" disabled={isSubmitting} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -130,14 +154,15 @@ export default function ContactPage() {
                           placeholder="Tell me about your project..." 
                           className="min-h-[150px] bg-background/50 rounded-xl resize-none" 
                           {...field} 
+                          disabled={isSubmitting}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="lg" className="w-full h-14 rounded-xl text-lg font-bold">
-                  Send Inquiry
+                <Button type="submit" size="lg" className="w-full h-14 rounded-xl text-lg font-bold" disabled={isSubmitting}>
+                  {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</> : "Send Inquiry"}
                 </Button>
               </form>
             </Form>

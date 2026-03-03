@@ -1,3 +1,4 @@
+
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +11,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { MOCK_PROJECTS } from "@/lib/mock-data";
+import { PortableText } from "@portabletext/react";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -123,12 +125,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   "{project.summary}"
                 </p>
                 <div className="prose prose-invert max-w-none text-muted-foreground text-xl leading-relaxed space-y-8">
-                  <p>
-                    This initiative focused on revolutionizing the way users interact with 
-                    complex data ecosystems. By prioritizing speed and intuitive visual 
-                    hierarchies, the platform achieved significant improvements in 
-                    user engagement and data processing efficiency.
-                  </p>
+                  {project.description ? (
+                    <div className="sanity-content">
+                      <PortableText value={project.description} />
+                    </div>
+                  ) : (
+                    <p>
+                      This project involved building a highly scalable solution focused on performance and reliability.
+                      Leveraging a modern tech stack, we delivered a seamless user experience that solved complex business logic.
+                    </p>
+                  )}
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8">
                     <div className="space-y-4">
                       <h4 className="text-white font-bold flex items-center gap-2">
@@ -136,8 +143,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       </h4>
                       <p className="text-base">
                         Implementation involved a decoupled architecture using high-performance 
-                        edge workers to minimize latency. Database schemas were optimized for 
-                        low-latency read operations during peak traffic.
+                        edge workers to minimize latency and ensure global availability.
                       </p>
                     </div>
                     <div className="space-y-4">
@@ -145,9 +151,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                         <Code2 className="h-5 w-5 text-accent" /> Key Features
                       </h4>
                       <p className="text-base">
-                        Real-time synchronization via custom WebSockets, adaptive 
-                        theming engines, and a rigorous automated testing suite 
-                        ensuring 99.9% uptime.
+                        Real-time data synchronization, adaptive user interfaces, 
+                        and a robust automated deployment pipeline.
                       </p>
                     </div>
                   </div>
@@ -224,8 +229,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                    </h4>
                    <p className="text-sm text-muted-foreground leading-relaxed">
                      As the Lead Architect, I oversaw the end-to-end delivery of this project, 
-                     from initial proof-of-concept to global deployment. The result was a 
-                     40% reduction in bounce rate and a significant lift in performance metrics.
+                     ensuring technical excellence and meeting all performance targets.
                    </p>
                 </div>
               </div>

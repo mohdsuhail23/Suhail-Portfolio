@@ -4,7 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2 } from "lucide-react";
+import { ArrowRight, Code2, Download } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const TECH_STACK = [
@@ -53,11 +53,17 @@ export function Hero() {
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 glass-card hover:bg-foreground/5">
-              <Link href="/contact">
-                Let's Connect
-              </Link>
-            </Button>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-16 text-lg font-bold gap-3 glass-card hover:bg-foreground/5">
+                <Link href="/contact">
+                  Connect
+                </Link>
+              </Button>
+              <Button variant="ghost" size="lg" className="rounded-full px-8 h-16 text-lg font-bold gap-3 border border-transparent hover:border-primary/20">
+                <Download className="h-5 w-5" />
+                CV
+              </Button>
+            </div>
           </div>
         </div>
 
