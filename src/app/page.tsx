@@ -1,10 +1,11 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { Button } from "@/components/ui/button";
 import { MOCK_PROJECTS } from "@/lib/mock-data";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 
 export default function Home() {
   const featuredProjects = MOCK_PROJECTS.filter((p) => p.featured);
@@ -15,63 +16,95 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         
+        <About />
+        
         {/* Featured Projects Section */}
-        <section className="py-24 px-4 bg-muted/30">
+        <section className="py-32 px-4 bg-background relative overflow-hidden">
+          {/* Subtle decoration */}
+          <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-primary/5 rounded-full blur-[120px] -z-10" />
+          
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-end justify-between mb-12">
-              <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-black">
-                  Selected <span className="text-primary">Works</span>
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-8">
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 text-primary font-black text-[10px] tracking-[0.3em] uppercase">
+                  <Star className="h-4 w-4 fill-primary" /> Portfolio
+                </div>
+                <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
+                  Selected <span className="text-primary italic">Works</span>
                 </h2>
-                <p className="text-muted-foreground max-w-lg">
-                  A collection of projects that demonstrate my technical expertise 
-                  and approach to building production-grade software.
+                <p className="text-muted-foreground max-w-xl text-lg">
+                  A high-level overview of some of the most challenging and impactful 
+                  software solutions I've architected and deployed recently.
                 </p>
               </div>
-              <Button asChild variant="link" className="hidden md:flex gap-2">
+              <Button asChild variant="link" className="group p-0 h-auto text-lg font-bold gap-3 text-foreground hover:text-primary transition-colors">
                 <Link href="/projects">
-                  Explore All Projects <ArrowRight className="h-4 w-4" />
+                  View full archive <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </div>
             
             <ProjectGrid projects={featuredProjects} columns={2} />
 
-            <div className="mt-12 flex justify-center md:hidden">
-              <Button asChild variant="outline" className="w-full">
-                <Link href="/projects">See All Projects</Link>
+            <div className="mt-20 flex justify-center md:hidden">
+              <Button asChild size="lg" className="w-full rounded-full h-14 font-bold">
+                <Link href="/projects">Explore Full Archive</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Experience CTA Section */}
-        <section className="py-24 px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter">
-              Over 6 years of <span className="text-accent">crafting</span> digital experiences.
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              I've worked with startups and established enterprises to deliver 
-              scalable, user-centric applications across various industries.
-            </p>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/experience">View Professional History</Link>
-            </Button>
+        {/* Testimonial / Quote CTA */}
+        <section className="py-32 px-4 border-y bg-muted/10">
+          <div className="max-w-4xl mx-auto text-center space-y-12">
+            <blockquote className="text-3xl md:text-5xl font-black tracking-tighter leading-tight italic">
+              "A true full-stack expert who understands that speed is a feature, 
+              and reliability is non-negotiable."
+            </blockquote>
+            <div className="space-y-8">
+              <p className="text-lg text-muted-foreground">
+                Ready to take your project to the next level?
+              </p>
+              <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-bold">
+                <Link href="/contact">Start a Conversation</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
       
-      <footer className="py-12 border-t glass mt-auto">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} DevSphere. Built with Next.js & Tailwind.
-          </p>
-          <div className="flex gap-8">
-            <Link href="https://github.com" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">GitHub</Link>
-            <Link href="https://linkedin.com" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">LinkedIn</Link>
-            <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Contact</Link>
+      <footer className="py-20 border-t glass mt-auto">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="space-y-4 text-center md:text-left">
+            <Link href="/" className="text-2xl font-black tracking-tighter uppercase italic">
+              Dev<span className="text-primary">Sphere</span>
+            </Link>
+            <p className="text-muted-foreground text-sm max-w-xs font-medium">
+              Architecting high-performance digital ecosystems for the modern web.
+            </p>
           </div>
+          <div className="flex gap-12">
+            <div className="space-y-4">
+              <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Social</h5>
+              <div className="flex flex-col gap-2">
+                <Link href="https://github.com" className="text-sm font-bold hover:text-primary transition-colors">GitHub</Link>
+                <Link href="https://linkedin.com" className="text-sm font-bold hover:text-primary transition-colors">LinkedIn</Link>
+                <Link href="https://twitter.com" className="text-sm font-bold hover:text-primary transition-colors">Twitter</Link>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Explore</h5>
+              <div className="flex flex-col gap-2">
+                <Link href="/projects" className="text-sm font-bold hover:text-primary transition-colors">Projects</Link>
+                <Link href="/experience" className="text-sm font-bold hover:text-primary transition-colors">Experience</Link>
+                <Link href="/contact" className="text-sm font-bold hover:text-primary transition-colors">Contact</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs font-bold uppercase tracking-widest text-muted-foreground/50">
+          <p>© {new Date().getFullYear()} DevSphere Labs. All Rights Reserved.</p>
+          <p>Built with Next.js 15 & Typeface</p>
         </div>
       </footer>
     </div>
