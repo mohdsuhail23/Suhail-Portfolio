@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Zap, MoveRight } from "lucide-react";
+import { ArrowUpRight, Zap, MoveRight, ImageOff } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Project } from "@/types";
 import { urlFor } from "@/lib/image";
@@ -11,21 +11,32 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const imageSrc = typeof project.mainImage === 'string' 
-    ? project.mainImage 
-    : urlFor(project.mainImage).url();
+  const imageSrc = project.mainImage 
+    ? (typeof project.mainImage === 'string' ? project.mainImage : urlFor(project.mainImage).url())
+    : "https://picsum.photos/seed/placeholder/800/600";
+
+  const displayDate = project.publishedAt 
+    ? new Date(project.publishedAt).getFullYear() 
+    : "Recent";
 
   return (
     <Card className="group relative overflow-hidden bg-transparent border-none shadow-none flex flex-col h-full rounded-[2.5rem]">
       {/* Image Container with premium frame */}
       <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[2.5rem] bg-muted/30 border border-white/5 group-hover:border-primary/50 transition-colors duration-700">
-        <Image
-          src={imageSrc}
-          alt={project.title}
-          fill
-          className="object-cover transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        {project.mainImage ? (
+          <Image
+            src={imageSrc}
+            alt={project.title}
+            fill
+            className="object-cover transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-muted-foreground/20">
+            <ImageOff className="h-20 w-20 mb-4" />
+            <span className="text-[10px] font-black uppercase tracking-[0.3em]">No Preview Available</span>
+          </div>
+        )}
         
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center backdrop-blur-sm p-12 text-center">
@@ -48,7 +59,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
           <div className="bg-black/50 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest backdrop-blur-md">
-            {new Date(project.publishedAt).getFullYear()}
+            {displayDate}
           </div>
         </div>
       </div>
@@ -65,7 +76,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
         
         <div className="flex flex-wrap gap-x-6 gap-y-2 opacity-60 group-hover:opacity-100 transition-opacity">
-          {project.technologies.slice(0, 3).map((tech) => (
+          {project.technologies?.slice(0, 3).map((tech) => (
             <span key={tech} className="text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" /> {tech}
             </span>

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { client } from "@/lib/sanity";
 import { projectBySlugQuery, projectsQuery } from "@/lib/queries";
 import { Project } from "@/types";
-import { Github, ExternalLink, ArrowLeft, Calendar, Tag, Info, Cpu, Code2 } from "lucide-react";
+import { Github, ExternalLink, ArrowLeft, Calendar, Tag, Info, Cpu, Code2, ImageOff } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -21,7 +21,9 @@ export async function generateStaticParams() {
   let projects: Project[] = [];
   try {
     projects = await client.fetch(projectsQuery);
-  } catch (e) {}
+  } catch (e) {
+    console.error("Static Params Fetch Error:", e);
+  }
 
   const displayProjects = projects.length > 0 ? projects : MOCK_PROJECTS;
   
@@ -48,7 +50,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     title: `${project.title} | Case Study`,
     description: project.summary,
     openGraph: {
-      images: [{ url: project.mainImage }],
+      images: project.mainImage ? [{ url: project.mainImage }] : [],
     },
   };
 }
@@ -59,7 +61,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   
   try {
     project = await client.fetch(projectBySlugQuery, { slug });
-  } catch (e) {}
+  } catch (e) {
+    console.error("Project Fetch Error:", e);
+  }
 
   if (!project) {
     project = MOCK_PROJECTS.find(p => p.slug.current === slug) || null;
@@ -67,20 +71,33 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   if (!project) notFound();
 
+  const publishDate = project.publishedAt 
+    ? new Date(project.publishedAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+    : "Recently Published";
+
+  const heroImage = project.mainImage || "https://picsum.photos/seed/placeholder-detail/1920/1080";
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
       <main className="flex-grow pb-32">
         {/* Immersive Cinematic Hero */}
-        <div className="relative h-[70vh] min-h-[600px] w-full flex items-end">
-          <Image
-            src={project.mainImage}
-            alt={project.title}
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="relative h-[70vh] min-h-[600px] w-full flex items-end bg-muted/20">
+          {project.mainImage ? (
+            <Image
+              src={heroImage}
+              alt={project.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/10">
+              <ImageOff className="h-32 w-32" />
+            </div>
+          )}
+          
           {/* Gradient Masks */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-background" />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80" />
@@ -95,7 +112,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 3).map(tech => (
+                  {project.technologies?.slice(0, 3).map(tech => (
                     <span key={tech} className="bg-primary/20 text-primary px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest backdrop-blur-md">
                       {tech}
                     </span>
@@ -160,13 +177,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </section>
 
               {/* Large Immersive Breakout Image */}
-              <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl">
-                <Image 
-                  src={project.mainImage} 
-                  alt="Interface detail" 
-                  fill 
-                  className="object-cover opacity-80"
-                />
+              <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl bg-muted/10">
+                {project.mainImage ? (
+                  <Image 
+                    src={heroImage} 
+                    alt="Interface detail" 
+                    fill 
+                    className="object-cover opacity-80"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/5">
+                    <ImageOff className="h-24 w-24" />
+                  </div>
+                )}
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px]">
                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">Interface Detail Overview</span>
                 </div>
@@ -184,10 +207,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       <Calendar className="h-4 w-4 text-primary" /> Published
                     </h3>
                     <p className="text-2xl font-black tracking-tighter">
-                      {new Date(project.publishedAt).toLocaleDateString('en-US', {
-                        month: 'long',
-                        year: 'numeric'
-                      })}
+                      {publishDate}
                     </p>
                   </div>
 
@@ -196,7 +216,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       <Tag className="h-4 w-4 text-accent" /> Technologies
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
+                      {project.technologies?.map((tech) => (
                         <Badge key={tech} variant="secondary" className="px-3 py-1 bg-white/5 border-none font-bold uppercase tracking-tighter text-[9px]">
                           {tech}
                         </Badge>
