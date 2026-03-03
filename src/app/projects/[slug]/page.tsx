@@ -1,7 +1,9 @@
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MOCK_PROJECTS } from "@/lib/mock-data";
+import { client } from "@/lib/sanity";
+import { projectBySlugQuery, projectsQuery } from "@/lib/queries";
+import { Project } from "@/types";
 import { Github, ExternalLink, ArrowLeft, Calendar, Tag, Info, Cpu, Code2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,9 +14,16 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  const projects: Project[] = await client.fetch(projectsQuery);
+  return projects.map((project) => ({
+    slug: project.slug.current,
+  }));
+}
+
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = MOCK_PROJECTS.find((p) => p.slug.current === slug);
+  const project: Project = await client.fetch(projectBySlugQuery, { slug });
 
   if (!project) return { title: "Project Not Found" };
 
@@ -29,7 +38,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = MOCK_PROJECTS.find((p) => p.slug.current === slug);
+  const project: Project = await client.fetch(projectBySlugQuery, { slug });
 
   if (!project) notFound();
 

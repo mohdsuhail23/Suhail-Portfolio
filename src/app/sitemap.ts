@@ -1,10 +1,14 @@
 import { MetadataRoute } from 'next';
-import { MOCK_PROJECTS } from '@/lib/mock-data';
+import { client } from '@/lib/sanity';
+import { projectsQuery } from '@/lib/queries';
+import { Project } from '@/types';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://devsphere.io';
   
-  const projectUrls = MOCK_PROJECTS.map((project) => ({
+  const projects: Project[] = await client.fetch(projectsQuery);
+  
+  const projectUrls = projects.map((project) => ({
     url: `${baseUrl}/projects/${project.slug.current}`,
     lastModified: new Date(project.publishedAt),
   }));

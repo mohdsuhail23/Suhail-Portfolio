@@ -1,13 +1,19 @@
 import { Navbar } from "@/components/Navbar";
 import { Timeline } from "@/components/Timeline";
-import { MOCK_EXPERIENCE } from "@/lib/mock-data";
+import { client } from "@/lib/sanity";
+import { experienceQuery } from "@/lib/queries";
+import { Experience } from "@/types";
 
 export const metadata = {
   title: "Experience | DevSphere Portfolio",
   description: "A chronological timeline of my professional career as a software engineer.",
 };
 
-export default function ExperiencePage() {
+export const revalidate = 3600; // Hourly revalidation for career data
+
+export default async function ExperiencePage() {
+  const experiences: Experience[] = await client.fetch(experienceQuery);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -21,7 +27,7 @@ export default function ExperiencePage() {
             </p>
           </div>
           
-          <Timeline experiences={MOCK_EXPERIENCE} />
+          <Timeline experiences={experiences} />
         </div>
       </main>
     </div>

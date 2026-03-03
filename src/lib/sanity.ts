@@ -1,14 +1,15 @@
-// This file is ready for when you set up your Sanity project
-// For now, it exports placeholders and utility functions
-
 import { createClient } from "next-sanity";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "placeholder";
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-01-01";
 
+if (!projectId) {
+  console.warn("Sanity Project ID is missing. Please set NEXT_PUBLIC_SANITY_PROJECT_ID in your environment variables.");
+}
+
 export const client = createClient({
-  projectId,
+  projectId: projectId || "placeholder",
   dataset,
   apiVersion,
   useCdn: process.env.NODE_ENV === "production",

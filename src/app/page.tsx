@@ -3,12 +3,17 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { Button } from "@/components/ui/button";
-import { MOCK_PROJECTS } from "@/lib/mock-data";
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
+import { client } from "@/lib/sanity";
+import { projectsQuery } from "@/lib/queries";
+import { Project } from "@/types";
 
-export default function Home() {
-  const featuredProjects = MOCK_PROJECTS.filter((p) => p.featured);
+export const revalidate = 60; // Revalidate every minute
+
+export default async function Home() {
+  const projects: Project[] = await client.fetch(projectsQuery);
+  const featuredProjects = projects.filter((p) => p.featured);
 
   return (
     <div className="min-h-screen flex flex-col">

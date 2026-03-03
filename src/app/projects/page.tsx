@@ -1,17 +1,18 @@
 import { Navbar } from "@/components/Navbar";
 import { ProjectGrid } from "@/components/ProjectGrid";
-import { MOCK_PROJECTS } from "@/lib/mock-data";
+import { client } from "@/lib/sanity";
+import { projectsQuery } from "@/lib/queries";
+import { Project } from "@/types";
 
 export const metadata = {
   title: "Projects | DevSphere Portfolio",
   description: "Explore my portfolio of technical projects, from AI dashboards to decentralized finance wallets.",
 };
 
-export default function ProjectsPage() {
-  // In a production environment with Sanity configured, 
-  // you would fetch data here using: 
-  // const projects = await client.fetch(projectsQuery);
-  const projects = MOCK_PROJECTS;
+export const revalidate = 60;
+
+export default async function ProjectsPage() {
+  const projects: Project[] = await client.fetch(projectsQuery);
 
   return (
     <div className="min-h-screen flex flex-col">
