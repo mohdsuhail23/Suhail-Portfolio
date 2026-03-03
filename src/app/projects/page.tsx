@@ -3,6 +3,7 @@ import { ProjectGrid } from "@/components/ProjectGrid";
 import { client } from "@/lib/sanity";
 import { projectsQuery } from "@/lib/queries";
 import { Project } from "@/types";
+import { MOCK_PROJECTS } from "@/lib/mock-data";
 
 export const metadata = {
   title: "Projects | DevSphere Portfolio",
@@ -12,7 +13,15 @@ export const metadata = {
 export const revalidate = 60;
 
 export default async function ProjectsPage() {
-  const projects: Project[] = await client.fetch(projectsQuery);
+  let projects: Project[] = [];
+  
+  try {
+    projects = await client.fetch(projectsQuery);
+  } catch (error) {
+    console.warn("Failed to fetch projects from Sanity, using mock data.", error);
+  }
+
+  const displayProjects = projects.length > 0 ? projects : MOCK_PROJECTS;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -29,7 +38,7 @@ export default async function ProjectsPage() {
             </p>
           </div>
           
-          <ProjectGrid projects={projects} />
+          <ProjectGrid projects={displayProjects} />
         </div>
       </main>
     </div>

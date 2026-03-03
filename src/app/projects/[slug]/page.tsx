@@ -9,21 +9,36 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { MOCK_PROJECTS } from "@/lib/mock-data";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const projects: Project[] = await client.fetch(projectsQuery);
-  return projects.map((project) => ({
+  let projects: Project[] = [];
+  try {
+    projects = await client.fetch(projectsQuery);
+  } catch (e) {}
+
+  const displayProjects = projects.length > 0 ? projects : MOCK_PROJECTS;
+  
+  return displayProjects.map((project) => ({
     slug: project.slug.current,
   }));
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project: Project = await client.fetch(projectBySlugQuery, { slug });
+  let project: Project | null = null;
+  
+  try {
+    project = await client.fetch(projectBySlugQuery, { slug });
+  } catch (e) {}
+
+  if (!project) {
+    project = MOCK_PROJECTS.find(p => p.slug.current === slug) || null;
+  }
 
   if (!project) return { title: "Project Not Found" };
 
@@ -38,7 +53,15 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project: Project = await client.fetch(projectBySlugQuery, { slug });
+  let project: Project | null = null;
+  
+  try {
+    project = await client.fetch(projectBySlugQuery, { slug });
+  } catch (e) {}
+
+  if (!project) {
+    project = MOCK_PROJECTS.find(p => p.slug.current === slug) || null;
+  }
 
   if (!project) notFound();
 

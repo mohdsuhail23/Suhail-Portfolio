@@ -3,6 +3,7 @@ import { Timeline } from "@/components/Timeline";
 import { client } from "@/lib/sanity";
 import { experienceQuery } from "@/lib/queries";
 import { Experience } from "@/types";
+import { MOCK_EXPERIENCE } from "@/lib/mock-data";
 
 export const metadata = {
   title: "Experience | DevSphere Portfolio",
@@ -12,7 +13,15 @@ export const metadata = {
 export const revalidate = 3600; // Hourly revalidation for career data
 
 export default async function ExperiencePage() {
-  const experiences: Experience[] = await client.fetch(experienceQuery);
+  let experiences: Experience[] = [];
+  
+  try {
+    experiences = await client.fetch(experienceQuery);
+  } catch (error) {
+    console.warn("Failed to fetch experience from Sanity, using mock data.", error);
+  }
+
+  const displayExperiences = experiences.length > 0 ? experiences : MOCK_EXPERIENCE;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -27,7 +36,7 @@ export default async function ExperiencePage() {
             </p>
           </div>
           
-          <Timeline experiences={experiences} />
+          <Timeline experiences={displayExperiences} />
         </div>
       </main>
     </div>

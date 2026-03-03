@@ -8,12 +8,22 @@ import { ArrowRight, Star } from "lucide-react";
 import { client } from "@/lib/sanity";
 import { projectsQuery } from "@/lib/queries";
 import { Project } from "@/types";
+import { MOCK_PROJECTS } from "@/lib/mock-data";
 
 export const revalidate = 60; // Revalidate every minute
 
 export default async function Home() {
-  const projects: Project[] = await client.fetch(projectsQuery);
-  const featuredProjects = projects.filter((p) => p.featured);
+  let projects: Project[] = [];
+  
+  try {
+    projects = await client.fetch(projectsQuery);
+  } catch (error) {
+    console.warn("Failed to fetch projects from Sanity, using mock data.", error);
+  }
+
+  // Fallback to mock data if Sanity returns empty
+  const displayProjects = projects.length > 0 ? projects : MOCK_PROJECTS;
+  const featuredProjects = displayProjects.filter((p) => p.featured);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -92,9 +102,9 @@ export default async function Home() {
             <div className="space-y-4">
               <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Social</h5>
               <div className="flex flex-col gap-2">
-                <Link href="https://github.com" className="text-sm font-bold hover:text-primary transition-colors">GitHub</Link>
-                <Link href="https://linkedin.com" className="text-sm font-bold hover:text-primary transition-colors">LinkedIn</Link>
-                <Link href="https://twitter.com" className="text-sm font-bold hover:text-primary transition-colors">Twitter</Link>
+                <Link href="https://github.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">GitHub</Link>
+                <Link href="https://linkedin.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">LinkedIn</Link>
+                <Link href="https://twitter.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">Twitter</Link>
               </div>
             </div>
             <div className="space-y-4">
@@ -109,7 +119,7 @@ export default async function Home() {
         </div>
         <div className="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs font-bold uppercase tracking-widest text-muted-foreground/50">
           <p>© {new Date().getFullYear()} DevSphere Labs. All Rights Reserved.</p>
-          <p>Built with Next.js 15 & Typeface</p>
+          <p>Built with Next.js 15 & Sanity</p>
         </div>
       </footer>
     </div>
