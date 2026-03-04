@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -13,7 +12,7 @@ const TECH_STACK = [
 ];
 
 export function Hero() {
-  const profileImg = PlaceHolderImages.find(img => img.id === "profile-photo")?.imageUrl || "https://picsum.photos/seed/dev-portrait/600/800";
+  const profileImg = PlaceHolderImages.find(img => img.id === "profile-photo")?.imageUrl || "/profileImage.png";
 
   return (
     <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4">
@@ -104,13 +103,15 @@ export function Hero() {
       </div>
 
       {/* Tech Marquee */}
-      <div className="mt-32 overflow-hidden w-full relative">
-        <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-20 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default">
-          {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-            <span key={i} className="text-4xl md:text-5xl font-black tracking-tighter uppercase italic outline-text">
-              {tech}
-            </span>
-          ))}
+      <div className="mt-32 w-full group">
+        <div className="overflow-hidden w-full relative">
+          <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-15 blur-[1.5px] grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:blur-0 transition-all duration-700 cursor-default">
+            {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
+              <span key={i} className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase italic outline-text">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
