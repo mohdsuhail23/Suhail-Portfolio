@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function About() {
   return (
-    <section className="py-24 px-4 bg-muted/20">
+    <section id="about" className="py-24 px-4 bg-muted/20 scroll-mt-24">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="space-y-4 max-w-3xl">
           <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-primary border-primary/20">
