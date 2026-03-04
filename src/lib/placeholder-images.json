@@ -27,7 +27,7 @@
     {
       "id": "profile-photo",
       "description": "Modern professional developer portrait",
-      "imageUrl": "https://storage.googleapis.com/static.firebasestudio.google.com/render/74697669-e337-4389-9e8c-550950346067.png",
+      "imageUrl": "/profileImage.png",
       "imageHint": "professional man"
     }
   ]
