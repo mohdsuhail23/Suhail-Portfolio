@@ -1,0 +1,35 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "project-1",
+      "description": "Enterprise Dashboard with AI analytics",
+      "imageUrl": "https://images.unsplash.com/photo-1563753159011-f1d8b8272c8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbnRlcnByaXNlJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc3MjQ0OTIzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "enterprise dashboard"
+    },
+    {
+      "id": "project-2",
+      "description": "E-commerce platform with real-time inventory",
+      "imageUrl": "https://images.unsplash.com/photo-1688561807381-05137151978f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlY29tbWVyY2UlMjBzaG9wfGVufDB8fHx8MTc3MjQ3NzkzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ecommerce shop"
+    },
+    {
+      "id": "project-3",
+      "description": "Collaborative design tool",
+      "imageUrl": "https://images.unsplash.com/photo-1752650735499-744db10266d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkZXNpZ24lMjBjb2xsYWJvcmF0aW9ufGVufDB8fHx8MTc3MjUyNjg5Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design collaboration"
+    },
+    {
+      "id": "hero-bg",
+      "description": "Abstract tech background",
+      "imageUrl": "https://images.unsplash.com/photo-1637825891028-564f672aa42c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0ZWNoJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzI0NDMzNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech background"
+    },
+    {
+      "id": "profile-photo",
+      "description": "Modern professional developer portrait",
+      "imageUrl": "/profileImage.png",
+      "imageHint": "professional portrait"
+    }
+  ]
+}
