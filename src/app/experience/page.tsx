@@ -1,5 +1,7 @@
+
 import { Navbar } from "@/components/Navbar";
 import { Timeline } from "@/components/Timeline";
+import { TechStack } from "@/components/TechStack";
 import { client } from "@/lib/sanity";
 import { experienceQuery } from "@/lib/queries";
 import { Experience } from "@/types";
@@ -37,6 +39,10 @@ export default async function ExperiencePage() {
           </div>
           
           <Timeline experiences={displayExperiences} />
+        </div>
+
+        <div className="max-w-7xl mx-auto mt-32">
+          <TechStack />
         </div>
       </main>
     </div>
