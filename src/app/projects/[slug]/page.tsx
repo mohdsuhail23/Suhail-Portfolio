@@ -138,42 +138,18 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   <h2 className="text-sm font-black uppercase tracking-[0.4em] text-primary shrink-0">Overview</h2>
                   <div className="h-px w-12 bg-white/10" />
                 </div>
+                
                 <p className="text-3xl md:text-4xl font-black tracking-tighter leading-tight italic">
                   "{project.summary}"
                 </p>
-                <div className="prose prose-invert max-w-none text-muted-foreground text-xl leading-relaxed space-y-8">
-                  {project.description ? (
+
+                {project.description && (
+                  <div className="prose prose-invert max-w-none text-muted-foreground text-xl leading-relaxed space-y-8">
                     <div className="sanity-content">
                       <PortableText value={project.description} />
                     </div>
-                  ) : (
-                    <p>
-                      This project involved building a highly scalable solution focused on performance and reliability.
-                      Leveraging a modern tech stack, we delivered a seamless user experience that solved complex business logic.
-                    </p>
-                  )}
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8">
-                    <div className="space-y-4">
-                      <h4 className="text-white font-bold flex items-center gap-2">
-                        <Cpu className="h-5 w-5 text-primary" /> Technical Strategy
-                      </h4>
-                      <p className="text-base">
-                        Implementation involved a decoupled architecture using high-performance 
-                        edge workers to minimize latency and ensure global availability.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-white font-bold flex items-center gap-2">
-                        <Code2 className="h-5 w-5 text-accent" /> Key Features
-                      </h4>
-                      <p className="text-base">
-                        Real-time data synchronization, adaptive user interfaces, 
-                        and a robust automated deployment pipeline.
-                      </p>
-                    </div>
                   </div>
-                </div>
+                )}
               </section>
 
               {/* Large Immersive Breakout Image */}
@@ -240,17 +216,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       </Button>
                     )}
                   </div>
-                </div>
-
-                {/* Additional context card */}
-                <div className="glass-card p-8 rounded-[2.5rem] bg-accent/5 border-accent/20">
-                   <h4 className="font-bold flex items-center gap-2 mb-4">
-                     <Info className="h-4 w-4 text-accent" /> Role & Impact
-                   </h4>
-                   <p className="text-sm text-muted-foreground leading-relaxed">
-                     As the Lead Architect, I oversaw the end-to-end delivery of this project, 
-                     ensuring technical excellence and meeting all performance targets.
-                   </p>
                 </div>
               </div>
             </div>
