@@ -25,10 +25,10 @@ export const metadata = {
 };
 
 const SKILLS = [
-  { category: "Frontend", items: ["React", "Next.js 15", "TypeScript", "Tailwind CSS", "Framer Motion"] },
-  { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "Redis", "GraphQL"] },
+  { category: "Frontend", items: ["React", "Next.js 15", "TypeScript", "JavaScript", "Tailwind CSS"] },
+  { category: "Backend", items: ["Node.js", "Express.js", "MongoDB", "Firebase", "GraphQL"] },
   { category: "Cloud & Devops", items: ["AWS", "Docker", "CI/CD", "Terraform", "Serverless"] },
-  { category: "Specialized", items: ["Generative AI", "LLM Integration", "Performance Audit", "System Design"] },
+  { category: "Specialized", items: ["Google Apps Script", "Generative AI", "LLM Integration", "System Design"] },
 ];
 
 export default function AboutPage() {

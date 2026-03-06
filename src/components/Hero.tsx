@@ -8,8 +8,9 @@ import { ArrowRight, Code2, Download } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const TECH_STACK = [
-  "Next.js", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", 
-  "Google Apps Script", "Workspace API", "Tailwind", "Python", "Cloud Functions", "GenAI"
+  "Next.js", "React", "TypeScript", "JavaScript", "Node.js", "Express.js", 
+  "GraphQL", "MongoDB", "Firebase", "Google Apps Script", "Workspace API", 
+  "Tailwind", "Cloud Functions", "GenAI"
 ];
 
 export function Hero() {

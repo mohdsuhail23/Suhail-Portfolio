@@ -11,7 +11,10 @@ import {
   Palette, 
   FileCode2, 
   Share2,
-  Terminal
+  Terminal,
+  Flame,
+  Server,
+  Leaf
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -35,16 +38,40 @@ const STACK = [
     description: "Type-safe development"
   },
   {
+    name: "JavaScript (ES6+)",
+    icon: <Code2 className="h-6 w-6 text-yellow-400" />,
+    category: "Language",
+    description: "Modern web standard"
+  },
+  {
     name: "Node.js",
     icon: <Hexagon className="h-6 w-6 text-green-500" />,
     category: "Backend",
     description: "Scalable server environments"
   },
   {
-    name: "PostgreSQL",
-    icon: <Database className="h-6 w-6 text-indigo-400" />,
+    name: "Express.js",
+    icon: <Server className="h-6 w-6 text-gray-400" />,
     category: "Backend",
-    description: "Relational data modeling"
+    description: "Minimalist web framework"
+  },
+  {
+    name: "Firebase",
+    icon: <Flame className="h-6 w-6 text-orange-500" />,
+    category: "Cloud/DB",
+    description: "Real-time apps & Auth"
+  },
+  {
+    name: "MongoDB",
+    icon: <Leaf className="h-6 w-6 text-green-600" />,
+    category: "Database",
+    description: "NoSQL document storage"
+  },
+  {
+    name: "GraphQL",
+    icon: <Share2 className="h-6 w-6 text-pink-500" />,
+    category: "API",
+    description: "Declarative data fetching"
   },
   {
     name: "Google Apps Script",
@@ -59,34 +86,10 @@ const STACK = [
     description: "Utility-first modern UI"
   },
   {
-    name: "Python",
-    icon: <Code2 className="h-6 w-6 text-blue-400" />,
-    category: "Backend",
-    description: "Data processing & Scripting"
-  },
-  {
-    name: "Cloud Functions",
-    icon: <Cloud className="h-6 w-6 text-orange-400" />,
-    category: "Cloud",
-    description: "Serverless compute logic"
-  },
-  {
     name: "Generative AI",
     icon: <Sparkles className="h-6 w-6 text-purple-400" />,
     category: "AI",
     description: "LLM & Genkit Integration"
-  },
-  {
-    name: "GraphQL",
-    icon: <Share2 className="h-6 w-6 text-pink-500" />,
-    category: "API",
-    description: "Declarative data fetching"
-  },
-  {
-    name: "Terminal / CI-CD",
-    icon: <Terminal className="h-6 w-6 text-slate-400" />,
-    category: "DevOps",
-    description: "Automation & Deployment"
   }
 ];
 
