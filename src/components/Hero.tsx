@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -8,7 +9,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const TECH_STACK = [
   "Next.js", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", 
-  "AWS", "Docker", "Tailwind", "Python", "Rust", "GenAI"
+  "Google Apps Script", "Workspace API", "Tailwind", "Python", "Cloud Functions", "GenAI"
 ];
 
 export function Hero() {
@@ -38,10 +39,9 @@ export function Hero() {
               CRAFTING <br /> DIGITAL <br /> <span className="text-primary italic">FRONTIERS.</span>
             </h1>
 
-            <p className="max-w-xl text-lg md:text-xl text-muted-foreground font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-              A Senior Software Architect dedicated to building 
-              ultra-performance web systems and scalable AI-driven 
-              infrastructure.
+            <p className="max-w-xl text-xl md:text-2xl text-muted-foreground font-black tracking-tight leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+              Full-Stack Developer & <br className="hidden md:block" /> 
+              <span className="text-foreground">Google Apps Script Engineer</span>
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export function Hero() {
 
         {/* Modern Profile Photo Container */}
         <div className="relative flex justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-1000 delay-500">
-          <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group">
+          <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
             <Image
               src={profileImg}
               alt="Professional Portrait"
@@ -84,8 +84,8 @@ export function Hero() {
             <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Lead Architect</p>
-                  <h4 className="text-xl font-bold tracking-tighter">Senior Engineer</h4>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Expert Developer</p>
+                  <h4 className="text-xl font-bold tracking-tighter">Full-Stack & GAS</h4>
                 </div>
                 <div className="flex gap-2">
                    <div className="w-8 h-8 rounded-lg bg-foreground/10 flex items-center justify-center">
