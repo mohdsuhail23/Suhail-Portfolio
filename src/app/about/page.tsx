@@ -13,7 +13,12 @@ import {
   Terminal, 
   Coffee, 
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  GraduationCap,
+  School,
+  Award,
+  BookOpen,
+  Calendar
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,6 +32,33 @@ export const metadata = {
 
 export default function AboutPage() {
   const profileImg = PlaceHolderImages.find(img => img.id === "profile-photo")?.imageUrl || "/profileImage.png";
+
+  const education = [
+    {
+      degree: "Bachelor of Computer Applications (BCA)",
+      institution: "Khwaja Moinuddin Chishti Language University",
+      period: "2021 — 2024",
+      score: "CGPA: 7.28",
+      description: "Studied computer science fundamentals including programming, software development, database management, and web technologies. Developed practical skills in full-stack development and problem solving through academic and project work.",
+      icon: <GraduationCap className="h-6 w-6" />
+    },
+    {
+      degree: "Intermediate (Class XII)",
+      institution: "St. Mary Public Inter College",
+      period: "2020",
+      score: "Percentage: 71%",
+      description: "Completed higher secondary education with focus on core academic subjects while developing strong analytical and problem-solving skills.",
+      icon: <School className="h-6 w-6" />
+    },
+    {
+      degree: "High School (Class X)",
+      institution: "St. Mary Public Inter College",
+      period: "2018",
+      score: "Percentage: 79.5%",
+      description: "Built a strong academic foundation and developed early interest in technology and computer applications.",
+      icon: <Award className="h-6 w-6" />
+    }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -69,7 +101,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Technical Arsenal - Now using the modern TechStack component */}
+        {/* Technical Arsenal */}
         <div className="border-y bg-muted/10">
           <TechStack />
         </div>
@@ -126,6 +158,57 @@ export default function AboutPage() {
                    </div>
                 </div>
              </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section className="px-6 py-32 bg-muted/5 border-y">
+          <div className="max-w-7xl mx-auto space-y-16">
+            <div className="max-w-3xl space-y-6">
+              <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-primary border-primary/20">
+                Academic Foundation
+              </Badge>
+              <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Educational <span className="text-primary italic">Journey</span></h2>
+              <p className="text-xl text-muted-foreground">Building the core principles of computer science and analytical thinking.</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-8">
+              {education.map((item, index) => (
+                <div 
+                  key={index} 
+                  className="glass-card p-8 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-8 md:gap-16 hover:bg-primary/5 transition-all duration-500 group"
+                >
+                  <div className="shrink-0">
+                    <div className="w-20 h-20 rounded-[2rem] bg-background flex items-center justify-center text-primary shadow-xl border border-white/5 group-hover:scale-110 transition-transform duration-500">
+                      {item.icon}
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6 flex-grow">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="space-y-1">
+                        <h3 className="text-2xl md:text-3xl font-black tracking-tighter">{item.degree}</h3>
+                        <p className="text-primary font-bold text-lg flex items-center gap-2">
+                          <School className="h-4 w-4" /> {item.institution}
+                        </p>
+                      </div>
+                      <div className="flex flex-col md:items-end gap-2">
+                        <Badge variant="secondary" className="w-fit px-4 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest bg-primary/10 text-primary border-none">
+                          <Calendar className="h-3 w-3 mr-2" /> {item.period}
+                        </Badge>
+                        <Badge variant="outline" className="w-fit px-4 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest border-primary/30 text-foreground">
+                          {item.score}
+                        </Badge>
+                      </div>
+                    </div>
+                    
+                    <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
