@@ -18,18 +18,12 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { TechStack } from "@/components/TechStack";
 
 export const metadata = {
   title: "About | DevSphere Portfolio",
   description: "Learn more about the engineering philosophy and technical expertise behind DevSphere.",
 };
-
-const SKILLS = [
-  { category: "Frontend", items: ["React", "Next.js 15", "TypeScript", "JavaScript", "Tailwind CSS"] },
-  { category: "Backend", items: ["Node.js", "Express.js", "MongoDB", "Firebase", "GraphQL"] },
-  { category: "Cloud & Devops", items: ["AWS", "Docker", "CI/CD", "Terraform", "Serverless"] },
-  { category: "Specialized", items: ["Google Apps Script", "Generative AI", "LLM Integration", "System Design"] },
-];
 
 export default function AboutPage() {
   const profileImg = PlaceHolderImages.find(img => img.id === "profile-photo")?.imageUrl || "/profileImage.png";
@@ -75,30 +69,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Technical Arsenal */}
-        <section className="px-6 py-32 bg-muted/20 border-y">
-          <div className="max-w-7xl mx-auto space-y-16">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Technical <span className="text-primary italic">Arsenal</span></h2>
-              <p className="text-muted-foreground text-lg">My weapon of choice for every layer of the stack.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {SKILLS.map((skillGroup) => (
-                <div key={skillGroup.category} className="glass-card p-8 space-y-6 rounded-[2rem]">
-                  <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary">{skillGroup.category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skillGroup.items.map(skill => (
-                      <Badge key={skill} variant="secondary" className="px-3 py-1 bg-white/5 border-none font-bold text-[10px] uppercase tracking-tighter">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Technical Arsenal - Now using the modern TechStack component */}
+        <div className="border-y bg-muted/10">
+          <TechStack />
+        </div>
 
         {/* Deep Dive Bento */}
         <section className="px-6 py-32">
