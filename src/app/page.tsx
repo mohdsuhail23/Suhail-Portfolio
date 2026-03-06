@@ -116,7 +116,6 @@ export default async function Home() {
               <div className="flex flex-col gap-2">
                 <Link href="https://github.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">GitHub</Link>
                 <Link href="https://linkedin.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">LinkedIn</Link>
-                <Link href="https://twitter.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">Twitter</Link>
               </div>
             </div>
             <div className="space-y-4">
@@ -124,14 +123,12 @@ export default async function Home() {
               <div className="flex flex-col gap-2">
                 <Link href="/projects" className="text-sm font-bold hover:text-primary transition-colors">Projects</Link>
                 <Link href="/experience" className="text-sm font-bold hover:text-primary transition-colors">Experience</Link>
-                <Link href="/contact" className="text-sm font-bold hover:text-primary transition-colors">Contact</Link>
               </div>
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs font-bold uppercase tracking-widest text-muted-foreground/50">
+        <div className="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 text-center text-xs font-bold uppercase tracking-widest text-muted-foreground/50">
           <p>© {new Date().getFullYear()} DevSphere Labs. All Rights Reserved.</p>
-          <p>Built with Next.js 15 & Sanity</p>
         </div>
       </footer>
     </div>
