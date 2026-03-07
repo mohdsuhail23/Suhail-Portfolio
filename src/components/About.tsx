@@ -39,7 +39,7 @@ export function About() {
           </div>
 
           <div className="glass-card p-8 flex flex-col justify-center items-center text-center gap-4">
-            <h4 className="text-6xl font-black tracking-tighter text-primary">40+</h4>
+            <h4 className="text-6xl font-black tracking-tighter text-primary">10+</h4>
             <p className="text-sm font-bold uppercase tracking-widest opacity-60">Automations Deployed</p>
           </div>
 
