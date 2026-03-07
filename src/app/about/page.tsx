@@ -77,9 +77,7 @@ export default function AboutPage() {
                 BRIDGING <br /> DATA & <br /> <span className="text-primary italic">AUTOMATION.</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl">
-                I specialize in building seamless digital ecosystems. From high-performance 
-                Next.js applications to complex Google Workspace automation, 
-                I turn fragmented workflows into unified powerhouses.
+                I develop modern web applications using React, Next.js, Node.js, and Firebase while also building automation solutions with Google Apps Script to streamline business processes and improve productivity.
               </p>
             </div>
             

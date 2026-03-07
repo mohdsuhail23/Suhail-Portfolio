@@ -24,10 +24,7 @@ export function About() {
               </div>
               <h3 className="text-3xl font-black tracking-tighter">The Automation Mindset</h3>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                I don't just build websites; I engineer productivity. My philosophy is rooted in 
-                the belief that technology should remove friction. By bridging modern 
-                full-stack frameworks with powerful Google Apps Script automation, I create 
-                ecosystems where data flows effortlessly and businesses scale without manual overhead.
+                I develop modern web applications using React, Next.js, Node.js, and Firebase while also building automation solutions with Google Apps Script to streamline business processes and improve productivity.
               </p>
             </div>
             <div className="pt-8 flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-primary">
