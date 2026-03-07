@@ -19,7 +19,8 @@ import {
   Award,
   BookOpen,
   Calendar,
-  Workflow
+  Workflow,
+  Search
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -67,7 +68,7 @@ export default function AboutPage() {
       
       <main className="flex-grow pt-32 pb-24">
         {/* Intro Section */}
-        <section className="px-6 mb-32">
+        <section className="px-6 mb-24">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-7 space-y-8">
               <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.3em] uppercase text-primary border-primary/20">
@@ -100,13 +101,40 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Narrative Section */}
+        <section className="px-6 py-32 border-y bg-muted/5">
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="space-y-4">
+              <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-accent border-accent/20">
+                The Narrative
+              </Badge>
+              <h2 className="text-4xl md:text-6xl font-black tracking-tighter">The Story <span className="text-accent italic">Behind the Code.</span></h2>
+            </div>
+            
+            <div className="prose prose-invert max-w-none space-y-8 text-xl text-muted-foreground leading-relaxed font-medium">
+              <p>
+                My journey into technology began with full-stack web development, where I focused on building complete web applications from frontend interfaces to backend systems. I worked with modern technologies to create responsive user experiences, manage databases, and develop scalable APIs that support real-world products.
+              </p>
+              <p>
+                While working on web projects, I became interested in improving workflows and reducing repetitive tasks. This led me to explore Google Apps Script, where I started building automation solutions that integrate with tools like Google Sheets and other Google Workspace services. These solutions helped automate data processing, reporting, and internal workflows.
+              </p>
+              <p>
+                Alongside development, I also work professionally in Search Engine Optimization (SEO). In my role at a company, I focus on improving website visibility, optimizing technical SEO, and helping websites perform better in search engines through structured optimization strategies.
+              </p>
+              <p className="text-foreground font-black border-l-4 border-primary pl-6 py-2 bg-primary/5 rounded-r-2xl">
+                Today, my work sits at the intersection of development, automation, and SEO, allowing me to build websites that are not only functional and scalable but also optimized for performance, efficiency, and search visibility.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Technical Arsenal */}
-        <div className="border-y bg-muted/10">
+        <div className="bg-background">
           <TechStack />
         </div>
 
         {/* Engineering Philosophy Bento */}
-        <section className="px-6 py-32">
+        <section className="px-6 py-32 bg-muted/5">
           <div className="max-w-7xl mx-auto space-y-16">
              <div className="max-w-3xl space-y-6">
                 <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Engineering <span className="text-accent italic">Philosophy</span></h2>
@@ -127,10 +155,10 @@ export default function AboutPage() {
                 </div>
 
                 <div className="glass-card p-12 rounded-[2.5rem] space-y-6 bg-accent/5 flex flex-col justify-between">
-                   <Terminal className="h-10 w-10 text-accent" />
+                   <Search className="h-10 w-10 text-accent" />
                    <div className="space-y-4">
-                      <h3 className="text-2xl font-black tracking-tighter">Clean Architecture</h3>
-                      <p className="text-sm text-muted-foreground">I build modular, type-safe systems that are easy to maintain and scale. Technical debt isn't an option.</p>
+                      <h3 className="text-2xl font-black tracking-tighter">SEO Optimization</h3>
+                      <p className="text-sm text-muted-foreground">I build with visibility in mind. Technical SEO isn't an afterthought—it's woven into the architecture of every project.</p>
                    </div>
                 </div>
 
@@ -163,7 +191,7 @@ export default function AboutPage() {
         </section>
 
         {/* Education Section */}
-        <section className="px-6 py-32 bg-muted/5 border-y">
+        <section className="px-6 py-32 bg-background border-y">
           <div className="max-w-7xl mx-auto space-y-16">
             <div className="max-w-3xl space-y-6">
               <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase text-primary border-primary/20">
