@@ -63,10 +63,8 @@ export const projectType = defineType({
       name: 'technologies',
       title: 'Technologies',
       type: 'array',
+      description: 'Add each technology used in the project (e.g. Next.js, Firebase).',
       of: [{ type: 'string' }],
-      options: {
-        layout: 'tags',
-      },
     }),
     defineField({
       name: 'projectLink',
