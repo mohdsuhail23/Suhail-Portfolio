@@ -34,7 +34,7 @@ export function About() {
 
           {/* Quick Stats */}
           <div className="glass-card p-8 flex flex-col justify-center items-center text-center gap-4">
-            <h4 className="text-6xl font-black tracking-tighter text-accent">06+</h4>
+            <h4 className="text-6xl font-black tracking-tighter text-accent">02+</h4>
             <p className="text-sm font-bold uppercase tracking-widest opacity-60">Years Experience</p>
           </div>
 
