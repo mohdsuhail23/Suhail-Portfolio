@@ -18,7 +18,8 @@ import {
   School,
   Award,
   BookOpen,
-  Calendar
+  Calendar,
+  Workflow
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -73,12 +74,12 @@ export default function AboutPage() {
                 The Architect
               </Badge>
               <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] gradient-text">
-                SOLVING <br /> COMPLEXITY <br /> WITH <span className="text-primary italic">ELEGANCE.</span>
+                BRIDGING <br /> DATA & <br /> <span className="text-primary italic">AUTOMATION.</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl">
-                I don't just build websites; I engineer digital ecosystems. 
-                My focus is on the intersection of high-performance architecture 
-                and intuitive user experience.
+                I specialize in building seamless digital ecosystems. From high-performance 
+                Next.js applications to complex Google Workspace automation, 
+                I turn fragmented workflows into unified powerhouses.
               </p>
             </div>
             
@@ -94,7 +95,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8 flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs font-black uppercase tracking-widest text-white">Based in Global / Remote</span>
+                  <span className="text-xs font-black uppercase tracking-widest text-white">Open to Global Opportunities</span>
                 </div>
               </div>
             </div>
@@ -106,51 +107,53 @@ export default function AboutPage() {
           <TechStack />
         </div>
 
-        {/* Deep Dive Bento */}
+        {/* Engineering Philosophy Bento */}
         <section className="px-6 py-32">
           <div className="max-w-7xl mx-auto space-y-16">
              <div className="max-w-3xl space-y-6">
                 <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Engineering <span className="text-accent italic">Philosophy</span></h2>
-                <p className="text-xl text-muted-foreground">How I approach every line of code and every architectural decision.</p>
+                <p className="text-xl text-muted-foreground">My approach to building software that lasts and empowers.</p>
              </div>
 
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 glass-card p-12 rounded-[2.5rem] space-y-6 group">
                    <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center text-primary group-hover:rotate-6 transition-transform">
-                      <Zap className="h-8 w-8" />
+                      <Workflow className="h-8 w-8" />
                    </div>
-                   <h3 className="text-3xl font-black tracking-tighter">Performance-First Mentality</h3>
+                   <h3 className="text-3xl font-black tracking-tighter">Automation Over Repetition</h3>
                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      Speed isn't a feature; it's a fundamental right of the user. I optimize for Core Web Vitals, 
-                      server-side efficiency, and minimal bundle sizes from the very first commit.
+                      Manual tasks are bottlenecks. I leverage Google Apps Script and custom Node.js 
+                      integrations to automate enterprise workflows, saving hundreds of hours 
+                      and eliminating human error across entire organizations.
                    </p>
                 </div>
 
                 <div className="glass-card p-12 rounded-[2.5rem] space-y-6 bg-accent/5 flex flex-col justify-between">
                    <Terminal className="h-10 w-10 text-accent" />
                    <div className="space-y-4">
-                      <h3 className="text-2xl font-black tracking-tighter">Clean Code</h3>
-                      <p className="text-sm text-muted-foreground">Scalability starts with readability. I write self-documenting code that teams love to work with.</p>
+                      <h3 className="text-2xl font-black tracking-tighter">Clean Architecture</h3>
+                      <p className="text-sm text-muted-foreground">I build modular, type-safe systems that are easy to maintain and scale. Technical debt isn't an option.</p>
                    </div>
                 </div>
 
                 <div className="glass-card p-12 rounded-[2.5rem] space-y-6 flex flex-col justify-between">
-                   <Coffee className="h-10 w-10 text-primary" />
+                   <Zap className="h-10 w-10 text-primary" />
                    <div className="space-y-4">
-                      <h3 className="text-2xl font-black tracking-tighter">Reliable Delivery</h3>
-                      <p className="text-sm text-muted-foreground">From startup MVPs to enterprise scale-ups, I deliver on time and with zero-tolerance for bugs.</p>
+                      <h3 className="text-2xl font-black tracking-tighter">Velocity & Precision</h3>
+                      <p className="text-sm text-muted-foreground">High-performance isn't just about code speed—it's about delivery speed without sacrificing quality.</p>
                    </div>
                 </div>
 
                 <div className="md:col-span-2 glass-card p-12 rounded-[2.5rem] space-y-8 flex flex-col md:flex-row gap-12 items-center">
                    <div className="space-y-6 flex-grow">
                       <div className="flex items-center gap-3 text-accent font-black text-[10px] tracking-widest uppercase">
-                         <Sparkles className="h-4 w-4" /> Innovation
+                         <Sparkles className="h-4 w-4" /> The AI Edge
                       </div>
-                      <h3 className="text-3xl font-black tracking-tighter">Future-Proofed with AI</h3>
+                      <h3 className="text-3xl font-black tracking-tighter">AI-Augmented Engineering</h3>
                       <p className="text-lg text-muted-foreground">
-                         I integrate GenAI capabilities not as gimmicks, but as powerful tools to automate workflows, 
-                         personalize content, and solve complex data challenges.
+                         I integrate Large Language Models (LLMs) to create smarter applications—from 
+                         automated data analysis in spreadsheets to intelligent, context-aware 
+                         web interfaces.
                       </p>
                    </div>
                    <div className="shrink-0 bg-accent/10 p-10 rounded-full">
