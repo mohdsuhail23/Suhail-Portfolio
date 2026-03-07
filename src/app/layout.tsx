@@ -5,8 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: 'DevSphere | Senior Software Engineer Portfolio',
-  description: 'Portfolio of a specialized full-stack developer focusing on high-performance web applications and scalable architecture.',
+  title: 'Mohammad Suhail | Full-Stack Developer & Google Apps Script Engineer',
+  description: 'Portfolio of Mohammad Suhail, specialized in high-performance web applications with Next.js and business automation with Google Apps Script.',
   metadataBase: new URL('https://devsphere.io'),
   openGraph: {
     type: 'website',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevSphere | Senior Software Engineer Portfolio',
-    description: 'Portfolio of a specialized full-stack developer focusing on high-performance web applications and scalable architecture.',
+    title: 'Mohammad Suhail | Developer Portfolio',
+    description: 'Specialized in high-performance full-stack applications and business automations.',
     images: ['https://picsum.photos/seed/dev/1200/630'],
   },
 };
@@ -38,13 +38,13 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "DevSphere",
+    "name": "Mohammad Suhail",
     "url": "https://devsphere.io",
-    "jobTitle": "Senior Software Engineer",
-    "description": "Specialized in high-performance full-stack applications with Next.js and TypeScript.",
+    "jobTitle": "Full-Stack Developer & Google Apps Script Engineer",
+    "description": "Specialized in high-performance full-stack applications with Next.js and business automation.",
     "sameAs": [
-      "https://github.com/devsphere",
-      "https://linkedin.com/in/devsphere"
+      "https://github.com/Suhail1102",
+      "https://www.linkedin.com/in/mohammad-suhail-406a81250/"
     ]
   };
 

@@ -3,7 +3,7 @@
 
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, ArrowRight, Send, Loader2 } from "lucide-react";
+import { Mail, Github, Linkedin, ArrowRight, Send, Loader2, Phone } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -80,7 +80,7 @@ export default function ContactPage() {
             
             <div className="space-y-6">
               <Link 
-                href="mailto:hello@devsphere.io" 
+                href="mailto:mohdsuhail2762@gmail.com" 
                 className="flex items-center gap-6 group p-6 rounded-2xl border bg-card/50 hover:border-primary/50 transition-all"
               >
                 <div className="bg-primary/10 p-4 rounded-xl text-primary">
@@ -88,20 +88,30 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Direct Email</p>
-                  <p className="text-2xl font-bold font-headline group-hover:text-primary transition-colors">hello@devsphere.io</p>
+                  <p className="text-xl sm:text-2xl font-bold font-headline group-hover:text-primary transition-colors">mohdsuhail2762@gmail.com</p>
                 </div>
                 <ArrowRight className="h-6 w-6 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
               </Link>
 
+              <div className="flex items-center gap-6 p-6 rounded-2xl border bg-card/50">
+                <div className="bg-accent/10 p-4 rounded-xl text-accent">
+                  <Phone className="h-8 w-8" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Phone</p>
+                  <p className="text-2xl font-bold font-headline">+91-7054328427</p>
+                </div>
+              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <Button asChild variant="outline" className="h-20 rounded-2xl gap-3 text-lg">
-                  <Link href="https://github.com" target="_blank">
+                  <Link href="https://github.com/Suhail1102" target="_blank">
                     <Github className="h-6 w-6" />
                     <span className="font-bold">GitHub</span>
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="h-20 rounded-2xl gap-3 text-lg">
-                  <Link href="https://linkedin.com" target="_blank">
+                  <Link href="https://www.linkedin.com/in/mohammad-suhail-406a81250/" target="_blank">
                     <Linkedin className="h-6 w-6 text-[#0077b5]" />
                     <span className="font-bold">LinkedIn</span>
                   </Link>

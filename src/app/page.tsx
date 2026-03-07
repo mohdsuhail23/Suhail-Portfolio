@@ -108,8 +108,8 @@ export default async function Home() {
             <div className="space-y-4">
               <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Social</h5>
               <div className="flex flex-col gap-2">
-                <Link href="https://github.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">GitHub</Link>
-                <Link href="https://linkedin.com" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">LinkedIn</Link>
+                <Link href="https://github.com/Suhail1102" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">GitHub</Link>
+                <Link href="https://www.linkedin.com/in/mohammad-suhail-406a81250/" className="text-sm font-bold hover:text-primary transition-colors" target="_blank">LinkedIn</Link>
               </div>
             </div>
             <div className="space-y-4">
@@ -122,7 +122,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 text-center text-xs font-bold uppercase tracking-widest text-muted-foreground/50">
-          <p>© {new Date().getFullYear()} DevSphere Labs. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Mohammad Suhail. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
