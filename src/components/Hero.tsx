@@ -36,8 +36,8 @@ export function Hero() {
               Available for new projects
             </div>
 
-            <h1 className="text-6xl sm:text-7xl md:text-8xl xl:text-9xl font-black tracking-tighter leading-[0.8] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
-              CRAFTING <br /> DIGITAL <br /> <span className="text-primary italic">FRONTIERS.</span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
+              Building <br /> Scalable <br /> Web Apps & <br /> <span className="text-primary italic">Automations.</span>
             </h1>
 
             <p className="max-w-xl text-xl md:text-2xl text-muted-foreground font-black tracking-tight leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
