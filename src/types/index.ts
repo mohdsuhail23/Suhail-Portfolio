@@ -2,6 +2,7 @@ export type Project = {
   _id: string;
   title: string;
   slug: { current: string };
+  category: string;
   mainImage?: string;
   summary: string;
   description?: any; // Portable text type

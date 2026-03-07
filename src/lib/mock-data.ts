@@ -10,6 +10,7 @@ export const MOCK_PROJECTS: Project[] = [
     _id: "1",
     title: "AI Predictive Analytics Dashboard",
     slug: { current: "ai-dashboard" },
+    category: "web app",
     mainImage: getPlaceholderImage("project-1"),
     summary: "A high-performance enterprise dashboard leveraging machine learning to predict market trends in real-time.",
     technologies: ["Next.js", "Python", "TensorFlow", "Tailwind CSS"],
@@ -20,26 +21,40 @@ export const MOCK_PROJECTS: Project[] = [
   },
   {
     _id: "2",
-    title: "E-Commerce Performance Suite",
-    slug: { current: "ecommerce-suite" },
+    title: "Google Sheets Inventory Sync",
+    slug: { current: "sheets-sync" },
+    category: "automation",
     mainImage: getPlaceholderImage("project-2"),
-    summary: "Scalable e-commerce infrastructure with real-time inventory management and server-side rendering for optimal SEO.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Next.js"],
-    projectLink: "https://shop.example.com",
-    githubLink: "https://github.com/example/ecommerce",
+    summary: "Automated inventory synchronization between multiple retail platforms and Google Sheets using Apps Script.",
+    technologies: ["Google Apps Script", "JavaScript", "REST APIs"],
+    projectLink: "https://demo.example.com",
+    githubLink: "https://github.com/example/automation",
     featured: true,
-    publishedAt: "2023-11-20T00:00:00Z"
+    publishedAt: "2024-02-10T00:00:00Z"
   },
   {
     _id: "3",
-    title: "Collaborative Design Interface",
-    slug: { current: "design-tool" },
+    title: "Client Portal for Law Firm",
+    slug: { current: "client-portal" },
+    category: "freelance",
     mainImage: getPlaceholderImage("project-3"),
-    summary: "Real-time collaborative design environment built for distributed teams with complex vector manipulation.",
-    technologies: ["TypeScript", "Canvas API", "WebSockets", "Rust"],
-    githubLink: "https://github.com/example/design-tool",
+    summary: "Custom built document management and communication portal for a mid-sized law firm.",
+    technologies: ["React", "Firebase", "Node.js"],
+    githubLink: "https://github.com/example/portal",
     featured: false,
-    publishedAt: "2023-08-10T00:00:00Z"
+    publishedAt: "2023-11-05T00:00:00Z"
+  },
+  {
+    _id: "4",
+    title: "Personal Finance Tracker",
+    slug: { current: "finance-tracker" },
+    category: "personal",
+    mainImage: getPlaceholderImage("project-1"),
+    summary: "A personal project to track expenses and analyze spending habits with interactive charts.",
+    technologies: ["Next.js", "MongoDB", "Tailwind"],
+    githubLink: "https://github.com/example/finance",
+    featured: false,
+    publishedAt: "2023-09-12T00:00:00Z"
   }
 ];
 

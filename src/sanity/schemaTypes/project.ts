@@ -22,6 +22,20 @@ export const projectType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Automation', value: 'automation' },
+          { title: 'Web App', value: 'web app' },
+          { title: 'Personal', value: 'personal' },
+          { title: 'Freelance', value: 'freelance' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main Image',
       type: 'image',
