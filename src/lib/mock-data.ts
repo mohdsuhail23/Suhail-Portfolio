@@ -1,3 +1,4 @@
+
 import { Project, Experience } from "@/types";
 import { PlaceHolderImages } from "./placeholder-images";
 
@@ -13,7 +14,7 @@ export const MOCK_PROJECTS: Project[] = [
     category: "web app",
     mainImage: getPlaceholderImage("project-1"),
     summary: "A high-performance enterprise dashboard leveraging machine learning to predict market trends in real-time.",
-    technologies: ["Next.js", "Python", "TensorFlow", "Tailwind CSS"],
+    technologies: ["Next.js", "Node.js", "Firebase", "Tailwind CSS", "GraphQL"],
     projectLink: "https://demo.example.com",
     githubLink: "https://github.com/example/ai-dashboard",
     featured: true,
@@ -26,7 +27,7 @@ export const MOCK_PROJECTS: Project[] = [
     category: "automation",
     mainImage: getPlaceholderImage("project-2"),
     summary: "Automated inventory synchronization between multiple retail platforms and Google Sheets using Apps Script.",
-    technologies: ["Google Apps Script", "JavaScript", "REST APIs"],
+    technologies: ["Google Apps Script", "JavaScript", "REST APIs", "Node.js"],
     projectLink: "https://demo.example.com",
     githubLink: "https://github.com/example/automation",
     featured: true,
@@ -39,7 +40,7 @@ export const MOCK_PROJECTS: Project[] = [
     category: "freelance",
     mainImage: getPlaceholderImage("project-3"),
     summary: "Custom built document management and communication portal for a mid-sized law firm.",
-    technologies: ["React", "Firebase", "Node.js"],
+    technologies: ["React", "Firebase", "Express.js", "MongoDB"],
     githubLink: "https://github.com/example/portal",
     featured: false,
     publishedAt: "2023-11-05T00:00:00Z"
@@ -51,7 +52,7 @@ export const MOCK_PROJECTS: Project[] = [
     category: "personal",
     mainImage: getPlaceholderImage("project-1"),
     summary: "A personal project to track expenses and analyze spending habits with interactive charts.",
-    technologies: ["Next.js", "MongoDB", "Tailwind"],
+    technologies: ["Next.js", "MongoDB", "Express.js", "Tailwind"],
     githubLink: "https://github.com/example/finance",
     featured: false,
     publishedAt: "2023-09-12T00:00:00Z"

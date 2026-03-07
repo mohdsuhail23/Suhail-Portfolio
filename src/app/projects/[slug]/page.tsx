@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { client } from "@/lib/sanity";
 import { projectBySlugQuery, projectsQuery } from "@/lib/queries";
 import { Project } from "@/types";
-import { Github, ExternalLink, ArrowLeft, Calendar, Tag, Info, Cpu, Code2, ImageOff } from "lucide-react";
+import { Github, ExternalLink, ArrowLeft, Calendar, Tag, ImageOff, Layers } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -139,9 +139,24 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   <div className="h-px w-12 bg-white/10" />
                 </div>
                 
-                <p className="text-3xl md:text-4xl font-black tracking-tighter leading-tight italic">
-                  "{project.summary}"
-                </p>
+                <div className="space-y-6">
+                  <p className="text-3xl md:text-4xl font-black tracking-tighter leading-tight italic">
+                    "{project.summary}"
+                  </p>
+
+                  {/* Core Tech Stack in Overview */}
+                  <div className="flex flex-wrap gap-3 py-4 border-y border-white/5">
+                    <div className="flex items-center gap-2 text-muted-foreground mr-4">
+                      <Layers className="h-4 w-4 text-primary" />
+                      <span className="text-[10px] font-black uppercase tracking-widest">Stack:</span>
+                    </div>
+                    {project.technologies?.map((tech) => (
+                      <Badge key={tech} variant="outline" className="border-primary/20 text-primary px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
 
                 {project.description && (
                   <div className="prose prose-invert max-w-none text-muted-foreground text-xl leading-relaxed space-y-8">
