@@ -9,18 +9,34 @@ const contactSchema = z.object({
   message: z.string().min(10),
 });
 
+/**
+ * Handles contact form submissions.
+ * This is a Server Action that validates input and prepares for email dispatch.
+ */
 export async function submitContactForm(formData: z.infer<typeof contactSchema>) {
-  // Simulate a delay for production feel
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // Artificial delay for better UX feel (simulating network request)
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 
   try {
     const validated = contactSchema.parse(formData);
     
-    // In a real production app, you would use EmailJS, Resend, or a similar service here.
-    console.log("Contact form submission received:", validated);
+    // SERVER-SIDE LOGIC:
+    // This is where you would integrate a service like Resend or EmailJS.
+    // Example: 
+    // const res = await resend.emails.send({ ... });
+    
+    console.log("SUCCESS: Contact form submission received:", validated);
 
-    return { success: true, message: "Thank you! Your message has been received." };
+    // If you add a real email service, wrap it in a try-catch and check the response.
+    return { 
+      success: true, 
+      message: "Success! I've received your message and will respond within 24 hours." 
+    };
   } catch (error) {
-    return { success: false, message: "Invalid form data. Please check your inputs." };
+    console.error("ERROR: Failed to process contact form:", error);
+    return { 
+      success: false, 
+      message: "Form validation failed. Please check your entries and try again." 
+    };
   }
 }
