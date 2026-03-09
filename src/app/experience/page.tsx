@@ -6,7 +6,6 @@ import { experienceQuery } from "@/lib/queries";
 import { Experience } from "@/types";
 import { MOCK_EXPERIENCE } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase } from "lucide-react";
 
 export const metadata = {
   title: "Experience | Mohammad Suhail",
@@ -35,7 +34,7 @@ export default async function ExperiencePage() {
             <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.3em] uppercase text-primary border-primary/20">
               The Trajectory
             </Badge>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] gradient-text uppercase">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] gradient-text uppercase">
               CAREER <br /> <span className="text-primary italic">JOURNEY.</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl">
