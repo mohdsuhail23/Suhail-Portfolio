@@ -3,21 +3,13 @@ import { Navbar } from "@/components/Navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
-  Code2, 
   Cpu, 
-  Globe, 
-  Layers, 
-  Rocket, 
-  Shield, 
   Zap, 
-  Terminal, 
-  Coffee, 
   Sparkles,
   ArrowRight,
   GraduationCap,
   School,
   Award,
-  BookOpen,
   Calendar,
   Workflow,
   Search
@@ -28,8 +20,8 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { TechStack } from "@/components/TechStack";
 
 export const metadata = {
-  title: "About | DevSphere Portfolio",
-  description: "Learn more about the engineering philosophy and technical expertise behind DevSphere.",
+  title: "About | Mohammad Suhail",
+  description: "Learn more about the engineering philosophy and technical expertise behind Mohammad Suhail's work.",
 };
 
 export default function AboutPage() {
@@ -74,7 +66,7 @@ export default function AboutPage() {
               <Badge variant="outline" className="px-4 py-1 rounded-full text-[10px] font-black tracking-[0.3em] uppercase text-primary border-primary/20">
                 The Architect
               </Badge>
-              <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] gradient-text">
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] gradient-text uppercase">
                 BRIDGING <br /> DATA & <br /> <span className="text-primary italic">AUTOMATION.</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed max-w-2xl">
@@ -83,10 +75,10 @@ export default function AboutPage() {
             </div>
             
             <div className="lg:col-span-5">
-              <div className="relative aspect-square rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
+              <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
                 <Image
                   src={profileImg}
-                  alt="Professional Portrait"
+                  alt="Mohammad Suhail Portrait"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   priority
@@ -146,11 +138,9 @@ export default function AboutPage() {
                    <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center text-primary group-hover:rotate-6 transition-transform">
                       <Workflow className="h-8 w-8" />
                    </div>
-                   <h3 className="text-3xl font-black tracking-tighter">Automation Over Repetition</h3>
+                   <h3 className="text-3xl font-black tracking-tighter">The Automation Mindset</h3>
                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      Manual tasks are bottlenecks. I leverage Google Apps Script and custom Node.js 
-                      integrations to automate enterprise workflows, saving hundreds of hours 
-                      and eliminating human error across entire organizations.
+                      I develop modern web applications using React, Next.js, Node.js, and Firebase while also building automation solutions with Google Apps Script to streamline business processes and improve productivity.
                    </p>
                 </div>
 
