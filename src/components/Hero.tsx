@@ -13,8 +13,21 @@ const TECH_STACK = [
   "Tailwind", "Cloud Functions", "GenAI"
 ];
 
-export function Hero() {
+interface HeroProps {
+  cvUrl?: string;
+}
+
+export function Hero({ cvUrl }: HeroProps) {
   const profileImg = PlaceHolderImages.find(img => img.id === "profile-photo")?.imageUrl || "/profileImage.png";
+
+  const handleDownloadCV = () => {
+    if (cvUrl) {
+      window.open(cvUrl, '_blank');
+    } else {
+      // Fallback or alert if no CV is uploaded yet
+      alert("CV is being updated. Please check back shortly or contact me directly.");
+    }
+  };
 
   return (
     <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4">
@@ -59,7 +72,12 @@ export function Hero() {
                   Connect
                 </Link>
               </Button>
-              <Button variant="ghost" size="lg" className="rounded-full px-8 h-16 text-lg font-bold gap-3 border border-transparent hover:border-primary/20">
+              <Button 
+                onClick={handleDownloadCV}
+                variant="ghost" 
+                size="lg" 
+                className="rounded-full px-8 h-16 text-lg font-bold gap-3 border border-transparent hover:border-primary/20"
+              >
                 <Download className="h-5 w-5" />
                 CV
               </Button>

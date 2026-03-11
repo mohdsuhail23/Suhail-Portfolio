@@ -36,3 +36,7 @@ export const experienceQuery = `*[_type == "experience"] | order(order asc) {
   points,
   order
 }`;
+
+export const cvQuery = `*[_type == "cv"][0] {
+  "fileUrl": file.asset->url
+}`;

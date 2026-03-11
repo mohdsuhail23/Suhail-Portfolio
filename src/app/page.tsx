@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import { client } from "@/lib/sanity";
-import { projectsQuery } from "@/lib/queries";
+import { projectsQuery, cvQuery } from "@/lib/queries";
 import { Project } from "@/types";
 import { MOCK_PROJECTS } from "@/lib/mock-data";
 
@@ -16,11 +16,17 @@ export const revalidate = 60; // Revalidate every minute
 
 export default async function Home() {
   let projects: Project[] = [];
+  let cvData: { fileUrl: string } | null = null;
   
   try {
-    projects = await client.fetch(projectsQuery);
+    const [fetchedProjects, fetchedCv] = await Promise.all([
+      client.fetch(projectsQuery),
+      client.fetch(cvQuery)
+    ]);
+    projects = fetchedProjects;
+    cvData = fetchedCv;
   } catch (error) {
-    console.warn("Failed to fetch projects from Sanity, using mock data.", error);
+    console.warn("Failed to fetch data from Sanity, using fallback logic.", error);
   }
 
   const hasSanityData = projects.length > 0;
@@ -36,7 +42,7 @@ export default async function Home() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <Hero />
+        <Hero cvUrl={cvData?.fileUrl} />
         
         <About />
 
