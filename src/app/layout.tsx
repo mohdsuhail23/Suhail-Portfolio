@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description: 'Portfolio of Mohammad Suhail, specialized in high-performance web applications with Next.js and business automation with Google Apps Script.',
   metadataBase: new URL('https://devsphere.io'),
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.png',
     shortcut: '/icon.png',
     apple: '/apple-touch-icon.png',
   },
