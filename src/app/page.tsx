@@ -32,12 +32,12 @@ export default async function Home() {
   const hasSanityData = projects.length > 0;
   const displayProjects = hasSanityData ? projects : MOCK_PROJECTS;
   
-  // Logic to show a minimum of 2 and maximum of 4 projects on home page
+  // Show exactly 2 projects on the home page
   // Prioritize featured projects, then fill with the most recent ones
   const featured = displayProjects.filter((p) => p.featured);
   const nonFeatured = displayProjects.filter((p) => !p.featured);
   
-  const featuredProjects = [...featured, ...nonFeatured].slice(0, 4);
+  const featuredProjects = [...featured, ...nonFeatured].slice(0, 2);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -66,7 +66,7 @@ export default async function Home() {
                   software solutions I've architected and deployed recently.
                 </p>
               </div>
-              <Button asChild variant="link" className="group p-0 h-auto text-lg font-bold gap-3 text-foreground hover:text-primary transition-colors">
+              <Button asChild variant="link" className="group p-0 h-auto text-lg font-bold gap-3 text-foreground hover:text-primary transition-colors hidden md:flex">
                 <Link href="/projects">
                   View full archive <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -75,9 +75,11 @@ export default async function Home() {
             
             <ProjectGrid projects={featuredProjects} columns={2} />
 
-            <div className="mt-20 flex justify-center md:hidden">
-              <Button asChild size="lg" className="w-full rounded-full h-14 font-bold">
-                <Link href="/projects">Explore Full Archive</Link>
+            <div className="mt-20 flex justify-center">
+              <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-bold group shadow-xl shadow-primary/10">
+                <Link href="/projects" className="flex items-center gap-3">
+                  Explore Full Archive <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
             </div>
           </div>
