@@ -34,7 +34,7 @@ export function Navbar() {
             <Code2 className="h-4 w-4" />
           </div>
           <span className="font-headline font-bold text-sm tracking-tighter hidden sm:inline-block">
-            DevSphere
+            Dev Suhail
           </span>
         </Link>
         

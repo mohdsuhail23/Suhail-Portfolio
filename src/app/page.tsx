@@ -104,7 +104,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="space-y-4 text-center md:text-left">
             <Link href="/" className="text-2xl font-black tracking-tighter uppercase italic">
-              Dev<span className="text-primary">Sphere</span>
+              Dev<span className="text-primary"> Suhail</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs font-medium">
               Architecting high-performance digital ecosystems for the modern web.

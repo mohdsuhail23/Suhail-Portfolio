@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://devsphere.io',
-    siteName: 'DevSphere Portfolio',
+    siteName: 'Dev Suhail Portfolio',
     images: [
       {
         url: 'https://picsum.photos/seed/dev/1200/630',
         width: 1200,
         height: 630,
-        alt: 'DevSphere Portfolio',
+        alt: 'Dev Suhail Portfolio',
       },
     ],
   },
