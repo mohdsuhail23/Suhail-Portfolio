@@ -32,11 +32,12 @@ export default async function Home() {
   const hasSanityData = projects.length > 0;
   const displayProjects = hasSanityData ? projects : MOCK_PROJECTS;
   
-  let featuredProjects = displayProjects.filter((p) => p.featured);
+  // Logic to show a minimum of 2 and maximum of 4 projects on home page
+  // Prioritize featured projects, then fill with the most recent ones
+  const featured = displayProjects.filter((p) => p.featured);
+  const nonFeatured = displayProjects.filter((p) => !p.featured);
   
-  if (featuredProjects.length === 0) {
-    featuredProjects = displayProjects.slice(0, 2);
-  }
+  const featuredProjects = [...featured, ...nonFeatured].slice(0, 4);
 
   return (
     <div className="min-h-screen flex flex-col">
