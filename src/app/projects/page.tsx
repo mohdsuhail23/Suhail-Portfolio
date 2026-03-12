@@ -6,7 +6,7 @@ import { Project } from "@/types";
 import { MOCK_PROJECTS } from "@/lib/mock-data";
 
 export const metadata = {
-  title: "Projects | DevSphere Portfolio",
+  title: "Projects | Dev Suhail Portfolio",
   description: "Explore my portfolio of technical projects, from AI dashboards to business automations.",
 };
 

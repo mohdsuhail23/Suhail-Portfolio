@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
@@ -21,6 +20,11 @@ export const metadata: Metadata = {
   title: 'Mohammad Suhail | Full-Stack Developer & Google Apps Script Engineer',
   description: 'Portfolio of Mohammad Suhail, specialized in high-performance web applications with Next.js and business automation with Google Apps Script.',
   metadataBase: new URL('https://devsphere.io'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/icon.png',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
