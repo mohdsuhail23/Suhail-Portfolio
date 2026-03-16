@@ -23,16 +23,15 @@ export default async function Home() {
       client.fetch(projectsQuery),
       client.fetch(cvQuery)
     ]);
-    projects = fetchedProjects;
+    projects = fetchedProjects || [];
     cvData = fetchedCv;
   } catch (error) {
     console.warn("Failed to fetch data from Sanity, using fallback logic.", error);
   }
 
-  const hasSanityData = projects.length > 0;
-  const displayProjects = hasSanityData ? projects : MOCK_PROJECTS;
+  const displayProjects = (projects && projects.length > 0) ? projects : MOCK_PROJECTS;
   
-  // Show exactly 2 projects on the home page
+  // Strictly show only 2 projects on the home page
   // Prioritize featured projects, then fill with the most recent ones
   const featured = displayProjects.filter((p) => p.featured);
   const nonFeatured = displayProjects.filter((p) => !p.featured);

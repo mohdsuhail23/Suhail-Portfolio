@@ -1,3 +1,4 @@
+
 import { Navbar } from "@/components/Navbar";
 import { Timeline } from "@/components/Timeline";
 import { client } from "@/lib/sanity";
@@ -11,18 +12,21 @@ export const metadata = {
   description: "A chronological timeline of my professional career as a software engineer and automation specialist.",
 };
 
-export const revalidate = 3600;
+// Set revalidate to 60 seconds to see changes quickly
+export const revalidate = 60;
 
 export default async function ExperiencePage() {
   let experiences: Experience[] = [];
   
   try {
+    // Fetch experiences from Sanity
     experiences = await client.fetch(experienceQuery);
   } catch (error) {
-    console.warn("Failed to fetch experience from Sanity, using mock data.", error);
+    console.error("Failed to fetch experience from Sanity:", error);
   }
 
-  const displayExperiences = experiences.length > 0 ? experiences : MOCK_EXPERIENCE;
+  // Use Sanity data if available, otherwise fallback to mock data for preview
+  const displayExperiences = experiences && experiences.length > 0 ? experiences : MOCK_EXPERIENCE;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
