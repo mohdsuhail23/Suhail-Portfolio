@@ -39,13 +39,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         )}
         
         {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center backdrop-blur-sm p-12 text-center">
-          <p className="text-white/80 mb-8 font-medium text-lg leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+        <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center backdrop-blur-sm p-8 text-center">
+          <p className="text-white/80 mb-6 font-medium text-base leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 line-clamp-3">
             {project.summary}
           </p>
           <Link
             href={`/projects/${project.slug.current}`}
-            className="flex items-center gap-3 px-8 py-4 bg-primary text-white font-black rounded-full hover:scale-105 transition-all transform translate-y-4 group-hover:translate-y-0 duration-500"
+            className="flex items-center gap-3 px-8 py-4 bg-primary text-white font-black rounded-full hover:scale-105 transition-all transform translate-y-4 group-hover:translate-y-0 duration-500 shrink-0"
           >
             Explore Case Study <MoveRight className="h-5 w-5" />
           </Link>

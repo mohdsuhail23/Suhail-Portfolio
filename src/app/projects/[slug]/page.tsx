@@ -17,6 +17,8 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 60; // Ensure data is updated every minute
+
 export async function generateStaticParams() {
   let projects: Project[] = [];
   try {
