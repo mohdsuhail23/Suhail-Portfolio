@@ -29,11 +29,17 @@ export async function chatWithAssistant(input: ChatInput): Promise<ChatOutput> {
   return chatFlow(input);
 }
 
-const chatPrompt = ai.definePrompt({
-  name: 'chatPrompt',
-  input: { schema: ChatInputSchema },
-  output: { schema: ChatOutputSchema },
-  system: `You are Mohammad Suhail. You MUST speak in the FIRST PERSON ("I", "me", "my", "mine"). 
+const chatFlow = ai.defineFlow(
+  {
+    name: 'chatFlow',
+    inputSchema: ChatInputSchema,
+    outputSchema: ChatOutputSchema,
+  },
+  async (input) => {
+    try {
+      // Using ai.generate directly for more reliable conversational context and safety filtering
+      const response = await ai.generate({
+        system: `You are Mohammad Suhail. You MUST speak in the FIRST PERSON ("I", "me", "my", "mine"). 
 
 When a user asks questions using "you", "your", or "yours", they are talking to YOU. You are representing yourself professionally.
 
@@ -51,26 +57,30 @@ My Background & Context:
 
 Tone: Professional, helpful, concise, and technically knowledgeable. 
 Rule: Always stay in character as Mohammad Suhail. Never say "Mohammad Suhail is a developer", say "I am a developer".`,
-  prompt: `
-{{#each history}}
-{{role}}: {{content}}
-{{/each}}
-user: {{{message}}}`,
-});
+        messages: [
+          ...(input.history || []).map((m) => ({
+            role: m.role,
+            content: [{ text: m.content }],
+          })),
+          { role: 'user', content: [{ text: input.message }] },
+        ],
+        config: {
+          safetySettings: [
+            { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+            { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
+            { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
+            { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' },
+          ],
+        },
+      });
 
-const chatFlow = ai.defineFlow(
-  {
-    name: 'chatFlow',
-    inputSchema: ChatInputSchema,
-    outputSchema: ChatOutputSchema,
-  },
-  async (input) => {
-    try {
-      const { output } = await chatPrompt(input);
-      if (!output) {
-        throw new Error('No response generated from the model.');
+      if (!response.text) {
+        throw new Error('Empty response from model');
       }
-      return output;
+
+      return {
+        response: response.text,
+      };
     } catch (error) {
       console.error('Genkit Chat Flow Error:', error);
       return {

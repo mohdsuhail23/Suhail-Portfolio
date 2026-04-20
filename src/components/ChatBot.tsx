@@ -47,7 +47,7 @@ export function ChatBot() {
     try {
       const response = await chatWithAssistant({
         message: currentInput,
-        history: messages.slice(-6), // Send last 6 messages for context
+        history: messages.slice(-8), // Send last 8 messages for better context
       });
 
       setMessages((prev) => [...prev, { role: "model", content: response.response }]);
@@ -64,7 +64,7 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] h-[500px] max-h-[70vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] lg:w-[450px] h-[500px] lg:h-[650px] max-h-[85vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
             <CardTitle className="text-sm font-black uppercase tracking-widest flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-primary" /> My Assistant
@@ -134,13 +134,13 @@ export function ChatBot() {
                 placeholder="Ask me anything..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="bg-background/50 border-white/5 h-10 text-sm focus:border-primary/50"
+                className="bg-background/50 border-white/5 h-11 text-sm focus:border-primary/50 rounded-xl"
                 disabled={isLoading}
               />
               <Button 
                 type="submit" 
                 size="icon" 
-                className="shrink-0 h-10 w-10 rounded-xl"
+                className="shrink-0 h-11 w-11 rounded-xl shadow-lg shadow-primary/20"
                 disabled={isLoading || !input.trim()}
               >
                 <Send className="h-4 w-4" />
