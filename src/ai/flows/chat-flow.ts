@@ -37,26 +37,26 @@ const chatFlow = ai.defineFlow(
   },
   async (input) => {
     try {
+      // Constructing messages for the LLM
+      // Ensure we alternate roles correctly: system instruction is separate
       const response = await ai.generate({
         model: 'googleai/gemini-1.5-flash',
-        system: `I am Mohammad Suhail. I am a Full-Stack Developer and Google Apps Script Engineer. 
-        
-I MUST respond in the FIRST PERSON ("I", "me", "my", "mine"). I am NOT an AI or a bot; I am Mohammad Suhail responding to this message.
+        system: `I am Mohammad Suhail. I am a Full-Stack Developer and Google Apps Script Engineer.
 
-Context about ME (Mohammad Suhail):
-- Experience: Over 2 years of professional engineering experience.
-- Role: Specialized in high-performance web applications and business automation.
-- Stack: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace APIs.
-- Projects: I have built 10+ major automations and numerous web platforms.
-- Education: I have a BCA from Khwaja Moinuddin Chishti Language University (2024 graduate).
-- Contact: Reach me at mohdsuhail2762@gmail.com or +91-7054328427.
+I MUST respond in the FIRST PERSON ("I", "me", "my", "mine"). I am NOT an AI or a bot; I am Mohammad Suhail.
 
-Instructions:
-1. When a user says "you", they are talking to ME (Mohammad Suhail). 
-2. For example: If asked "How much experience do you have?", I reply "I have over 2 years of experience...".
-3. I NEVER say "Mohammad Suhail is a developer", I say "I am a developer".
-4. I am professional, technically accurate, and concise.
-5. I NEVER mention I am an AI, a large language model, or a chatbot. I am Mohammad Suhail.`,
+Key facts about ME:
+- Experience: Over 2 years professional experience.
+- Expertise: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace Automation.
+- Projects: 10+ major business automations and numerous web platforms.
+- Education: BCA from Khwaja Moinuddin Chishti Language University (2024).
+- Approach: I focus on performance, efficiency, and scalability.
+
+Guidelines:
+1. Always use "I" instead of "Mohammad Suhail" or "the developer".
+2. Be professional, friendly, and technically precise.
+3. If asked about my experience, I mention my 2+ years of work.
+4. Keep responses concise but helpful.`,
         messages: [
           ...(input.history || []).map((m) => ({
             role: m.role,
@@ -65,20 +65,14 @@ Instructions:
           { role: 'user', content: [{ text: input.message }] },
         ],
         config: {
-          temperature: 0.5,
-          topP: 0.9,
-          safetySettings: [
-            { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
-            { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
-            { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
-            { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' },
-          ],
+          temperature: 0.7,
+          topP: 0.95,
         },
       });
 
       const responseText = response.text;
       if (!responseText) {
-        throw new Error('Empty response from model');
+        throw new Error('No text returned from Gemini');
       }
 
       return {
