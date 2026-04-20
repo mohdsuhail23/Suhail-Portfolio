@@ -38,8 +38,8 @@ export function Hero({ cvUrl }: HeroProps) {
       </div>
 
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-        <div className="space-y-10 text-center lg:text-left">
-          <div className="flex flex-col items-center lg:items-start gap-6">
+        <div className="space-y-8 text-center lg:text-left">
+          <div className="flex flex-col items-center lg:items-start gap-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase text-primary animate-in fade-in slide-in-from-top-4 duration-1000">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -48,25 +48,25 @@ export function Hero({ cvUrl }: HeroProps) {
               Available for new projects
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter leading-[0.9] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
               Building <br /> Scalable <br /> Web Apps & <br /> <span className="text-primary italic">Automations.</span>
             </h1>
 
-            <p className="max-w-xl text-lg md:text-xl lg:text-2xl text-muted-foreground font-black tracking-tight leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+            <p className="max-w-xl text-base md:text-lg lg:text-xl text-muted-foreground font-black tracking-tight leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
               Full-Stack Developer & <br className="hidden md:block" /> 
               <span className="text-foreground">Google Apps Script Engineer</span>
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Button asChild size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 group bg-primary hover:bg-primary/90 shadow-[0_0_40px_rgba(139,92,246,0.3)]">
+            <Button asChild size="lg" className="rounded-full px-10 h-14 text-base font-bold gap-3 group bg-primary hover:bg-primary/90 shadow-[0_0_40px_rgba(139,92,246,0.3)]">
               <Link href="/projects">
                 Explore Works
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-16 text-lg font-bold gap-3 glass-card hover:bg-foreground/5">
+              <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 text-base font-bold gap-3 glass-card hover:bg-foreground/5">
                 <Link href="/contact">
                   Connect
                 </Link>
@@ -75,7 +75,7 @@ export function Hero({ cvUrl }: HeroProps) {
                 onClick={handleDownloadCV}
                 variant="ghost" 
                 size="lg" 
-                className="rounded-full px-8 h-16 text-lg font-bold gap-3 border border-transparent hover:border-primary/20"
+                className="rounded-full px-8 h-14 text-base font-bold gap-3 border border-transparent hover:border-primary/20"
               >
                 <Download className="h-5 w-5" />
                 CV
@@ -84,9 +84,9 @@ export function Hero({ cvUrl }: HeroProps) {
           </div>
         </div>
 
-        {/* Modern Profile Photo Container */}
+        {/* Modern Profile Photo Container - Responsive Sizing for Laptops */}
         <div className="relative flex justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-1000 delay-500">
-          <div className="relative w-full max-w-[320px] sm:max-w-[450px] lg:max-w-[380px] xl:max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
+          <div className="relative w-full max-w-[280px] sm:max-w-[380px] lg:max-w-[320px] xl:max-w-[400px] aspect-[4/5] rounded-[2.5rem] overflow-hidden group border border-white/5 shadow-2xl">
             <Image
               src={profileImg}
               alt="Professional Portrait"
@@ -94,15 +94,15 @@ export function Hero({ cvUrl }: HeroProps) {
               className="object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
               priority
               data-ai-hint="professional portrait"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 450px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 320px, 400px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <div className="absolute bottom-6 left-6 right-6 p-5 glass rounded-2xl border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Expert Developer</p>
-                  <h4 className="text-xl font-bold tracking-tighter">Full-Stack & GAS</h4>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-primary mb-1">Expert Developer</p>
+                  <h4 className="text-lg font-bold tracking-tighter">Full-Stack & GAS</h4>
                 </div>
                 <div className="flex gap-2">
                    <div className="w-8 h-8 rounded-lg bg-foreground/10 flex items-center justify-center">
@@ -113,17 +113,17 @@ export function Hero({ cvUrl }: HeroProps) {
             </div>
           </div>
           
-          <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[80px] -z-10" />
-          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px] -z-10" />
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/20 rounded-full blur-[80px] -z-10" />
+          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/20 rounded-full blur-[80px] -z-10" />
         </div>
       </div>
 
       {/* Tech Marquee */}
-      <div className="mt-32 w-full group">
+      <div className="mt-24 w-full group">
         <div className="overflow-hidden w-full relative">
           <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-15 blur-[1.5px] grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:blur-0 transition-all duration-700 cursor-default">
             {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-              <span key={i} className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase italic outline-text">
+              <span key={i} className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter uppercase italic outline-text">
                 {tech}
               </span>
             ))}
