@@ -40,12 +40,13 @@ export function ChatBot() {
 
     const userMsg: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, userMsg]);
+    const currentInput = input;
     setInput("");
     setIsLoading(true);
 
     try {
       const response = await chatWithAssistant({
-        message: input,
+        message: currentInput,
         history: messages.slice(-6), // Send last 6 messages for context
       });
 
@@ -53,7 +54,7 @@ export function ChatBot() {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "model", content: "I'm sorry, I'm having trouble connecting right now. Please try again later." },
+        { role: "model", content: "I'm sorry, I'm having trouble connecting right now. Please check the API configuration or try again later." },
       ]);
     } finally {
       setIsLoading(false);
@@ -103,7 +104,7 @@ export function ChatBot() {
                         "p-3 rounded-2xl text-sm font-medium leading-relaxed",
                         msg.role === "user"
                           ? "bg-primary text-white rounded-tr-none"
-                          : "bg-muted text-foreground rounded-tl-none"
+                          : "bg-muted text-foreground rounded-tl-none shadow-sm"
                       )}
                     >
                       {msg.content}
@@ -115,7 +116,7 @@ export function ChatBot() {
                     <div className="w-8 h-8 rounded-full bg-accent/10 border border-white/5 flex items-center justify-center">
                       <Loader2 className="h-4 w-4 animate-spin" />
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-widest animate-pulse">Thinking...</span>
+                    <span className="text-xs font-bold uppercase tracking-widest animate-pulse">Consulting Suhail's brain...</span>
                   </div>
                 )}
               </div>
@@ -134,6 +135,7 @@ export function ChatBot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="bg-background/50 border-white/5 h-10 text-sm focus:border-primary/50"
+                disabled={isLoading}
               />
               <Button 
                 type="submit" 

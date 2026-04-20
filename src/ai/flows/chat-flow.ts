@@ -61,7 +61,17 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
-    const { output } = await chatPrompt(input);
-    return output!;
+    try {
+      const { output } = await chatPrompt(input);
+      if (!output) {
+        throw new Error('No response generated from the model.');
+      }
+      return output;
+    } catch (error) {
+      console.error('Genkit Chat Flow Error:', error);
+      return {
+        response: "I'm currently having a bit of trouble connecting to my brain. Please try again in a moment, or reach out to Suhail directly via the contact page!"
+      };
+    }
   }
 );
