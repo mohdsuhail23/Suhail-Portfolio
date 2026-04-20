@@ -24,23 +24,24 @@ export function Hero({ cvUrl }: HeroProps) {
     if (cvUrl) {
       window.open(cvUrl, '_blank');
     } else {
+      // Fallback or alert if no CV is uploaded yet
       alert("CV is being updated. Please check back shortly or contact me directly.");
     }
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 px-4">
+    <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4">
       {/* Background Layer */}
-      <div className="absolute inset-0 hero-grid -z-10 opacity-30" />
+      <div className="absolute inset-0 hero-grid -z-10 opacity-40" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-20 pointer-events-none">
-        <div className="absolute top-[10%] left-[10%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[180px] animate-pulse" />
-        <div className="absolute bottom-[20%] right-[10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[180px]" />
+        <div className="absolute top-[10%] left-[10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[180px] animate-pulse" />
+        <div className="absolute bottom-[20%] right-[10%] w-[50%] h-[50%] bg-accent/20 rounded-full blur-[180px]" />
       </div>
 
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
-        <div className="space-y-12 text-center lg:text-left">
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="space-y-10 text-center lg:text-left">
           <div className="flex flex-col items-center lg:items-start gap-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-primary animate-in fade-in slide-in-from-top-4 duration-1000">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase text-primary animate-in fade-in slide-in-from-top-4 duration-1000">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -48,7 +49,7 @@ export function Hero({ cvUrl }: HeroProps) {
               Available for new projects
             </div>
 
-            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
               Building <br /> Scalable <br /> Web Apps & <br /> <span className="text-primary italic">Automations.</span>
             </h1>
 
@@ -58,8 +59,8 @@ export function Hero({ cvUrl }: HeroProps) {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-bold gap-3 group bg-primary hover:bg-primary/90 shadow-[0_20px_50px_rgba(139,92,246,0.3)]">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+            <Button asChild size="lg" className="rounded-full px-10 h-16 text-lg font-bold gap-3 group bg-primary hover:bg-primary/90 shadow-[0_0_40px_rgba(139,92,246,0.3)]">
               <Link href="/projects">
                 Explore Works
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -84,7 +85,7 @@ export function Hero({ cvUrl }: HeroProps) {
           </div>
         </div>
 
-        {/* Profile Photo Container */}
+        {/* Modern Profile Photo Container */}
         <div className="relative flex justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-1000 delay-500">
           <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
             <Image
@@ -98,32 +99,34 @@ export function Hero({ cvUrl }: HeroProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-[2rem] border-white/10 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            {/* Overlay Info Card */}
+            <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-2">Expert Developer</p>
-                  <h4 className="text-2xl font-bold tracking-tighter">Full-Stack & GAS</h4>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">Expert Developer</p>
+                  <h4 className="text-xl font-bold tracking-tighter">Full-Stack & GAS</h4>
                 </div>
-                <div className="flex gap-3">
-                   <div className="w-12 h-12 rounded-2xl bg-foreground/10 flex items-center justify-center">
-                      <Code2 className="h-6 w-6" />
+                <div className="flex gap-2">
+                   <div className="w-8 h-8 rounded-lg bg-foreground/10 flex items-center justify-center">
+                      <Code2 className="h-4 w-4" />
                    </div>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-accent/10 rounded-full blur-[100px] -z-10" />
-          <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-primary/10 rounded-full blur-[100px] -z-10" />
+          {/* Decorative Elements */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[80px] -z-10" />
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px] -z-10" />
         </div>
       </div>
 
       {/* Tech Marquee */}
       <div className="mt-32 w-full group">
         <div className="overflow-hidden w-full relative">
-          <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-10 blur-[1px] grayscale group-hover:grayscale-0 group-hover:opacity-60 group-hover:blur-0 transition-all duration-700 cursor-default">
+          <div className="flex whitespace-nowrap animate-marquee gap-16 items-center opacity-15 blur-[1.5px] grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:blur-0 transition-all duration-700 cursor-default">
             {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-              <span key={i} className="text-4xl md:text-6xl font-black tracking-tighter uppercase italic outline-text">
+              <span key={i} className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase italic outline-text">
                 {tech}
               </span>
             ))}
