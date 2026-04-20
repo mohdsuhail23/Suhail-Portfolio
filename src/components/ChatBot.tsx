@@ -47,14 +47,14 @@ export function ChatBot() {
     try {
       const response = await chatWithAssistant({
         message: currentInput,
-        history: messages.slice(-8), // Send last 8 messages for better context
+        history: messages.slice(-6), // Send last 6 messages for better context and token efficiency
       });
 
       setMessages((prev) => [...prev, { role: "model", content: response.response }]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "model", content: "I'm sorry, I'm having trouble connecting right now. Please reach out to me via email!" },
+        { role: "model", content: "I'm sorry, I'm having trouble connecting right now. Please reach out to me via my contact page!" },
       ]);
     } finally {
       setIsLoading(false);
@@ -64,10 +64,10 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] lg:w-[450px] h-[500px] lg:h-[650px] max-h-[85vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] h-[500px] lg:h-[600px] max-h-[80vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
             <CardTitle className="text-sm font-black uppercase tracking-widest flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" /> My Assistant
+              <Sparkles className="h-4 w-4 text-primary" /> Assistant
             </CardTitle>
             <Button
               variant="ghost"
@@ -85,7 +85,7 @@ export function ChatBot() {
                   <div
                     key={i}
                     className={cn(
-                      "flex gap-3 max-w-[85%]",
+                      "flex gap-3 max-w-[90%]",
                       msg.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
                     )}
                   >

@@ -1,7 +1,7 @@
 'use server';
 /**
  * @fileOverview AI Chatbot flow for Mohammad Suhail's portfolio.
- * Provides a conversational interface to answer questions about the developer.
+ * Provides a direct conversational interface representing Mohammad Suhail in the first person.
  */
 
 import { ai } from '@/ai/genkit';
@@ -37,26 +37,25 @@ const chatFlow = ai.defineFlow(
   },
   async (input) => {
     try {
-      // Using ai.generate directly for more reliable conversational context and safety filtering
       const response = await ai.generate({
-        system: `You are Mohammad Suhail. You MUST speak in the FIRST PERSON ("I", "me", "my", "mine"). 
+        system: `I am Mohammad Suhail. I MUST speak in the FIRST PERSON ("I", "me", "my", "mine"). 
 
-When a user asks questions using "you", "your", or "yours", they are talking to YOU. You are representing yourself professionally.
+When a user asks questions using "you", "your", or "yours", they are talking directly to ME. I am representing myself professionally.
 
-My Background & Context:
+My Background Context:
 - Name: Mohammad Suhail.
 - Role: Full-Stack Developer & Google Apps Script Engineer.
-- Experience: 2+ years of professional experience.
-- Key Accomplishments: Deployed 10+ major automations and numerous high-performance web applications.
-- Expertise: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace Automation.
-- Special Skill: Building custom automations with Google Apps Script to streamline business workflows.
-- SEO Specialist: Professional background in Technical SEO and search visibility.
+- Experience: 2+ years of professional engineering experience.
+- Technical Expertise: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace Automation.
+- Key Accomplishments: Deployed 10+ major business automations and built numerous high-performance web applications.
 - Education: BCA from Khwaja Moinuddin Chishti Language University (2021-2024), CGPA: 7.28.
 - Philosophy: "Efficiency Through Intelligence, Scale Through Design."
 - Contact: mohdsuhail2762@gmail.com | +91-7054328427.
 
-Tone: Professional, helpful, concise, and technically knowledgeable. 
-Rule: Always stay in character as Mohammad Suhail. Never say "Mohammad Suhail is a developer", say "I am a developer".`,
+Tone Guidelines:
+- Professional, helpful, concise, and technically knowledgeable. 
+- ALWAYS stay in character as Mohammad Suhail. Never say "Mohammad Suhail is a developer", say "I am a developer".
+- If asked about my experience, I have over 2 years of professional experience in full-stack development and automation.`,
         messages: [
           ...(input.history || []).map((m) => ({
             role: m.role,
@@ -65,6 +64,7 @@ Rule: Always stay in character as Mohammad Suhail. Never say "Mohammad Suhail is
           { role: 'user', content: [{ text: input.message }] },
         ],
         config: {
+          temperature: 0.7,
           safetySettings: [
             { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
             { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
@@ -74,8 +74,8 @@ Rule: Always stay in character as Mohammad Suhail. Never say "Mohammad Suhail is
         },
       });
 
-      if (!response.text) {
-        throw new Error('Empty response from model');
+      if (!response || !response.text) {
+        throw new Error('No text returned from the model');
       }
 
       return {
@@ -84,7 +84,7 @@ Rule: Always stay in character as Mohammad Suhail. Never say "Mohammad Suhail is
     } catch (error) {
       console.error('Genkit Chat Flow Error:', error);
       return {
-        response: "I'm currently having a bit of trouble connecting to my system. Please try again in a moment, or reach out to me directly via my contact page!"
+        response: "I'm currently away from my desk, but I'd love to chat. Please try messaging me again in a moment, or reach out to me directly via my contact page!"
       };
     }
   }
