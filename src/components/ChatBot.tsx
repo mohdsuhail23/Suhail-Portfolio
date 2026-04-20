@@ -20,13 +20,12 @@ export function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "model",
-      content: "Hi! I'm Mohammad Suhail. How can I help you today? Feel free to ask about my work in full-stack development or business automation.",
+      content: "Hi! I'm Mohammad Suhail. How can I help you today? Feel free to ask about my work in full-stack development or automation.",
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom whenever messages or loading state changes
   useEffect(() => {
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
@@ -42,10 +41,9 @@ export function ChatBot() {
     const currentMessage = input.trim();
     const newUserMessage: Message = { role: "user", content: currentMessage };
     
-    // Save previous messages for history before updating local state
+    // History sent to server excludes the current message (server appends it)
     const history = [...messages];
     
-    // Optimistically update UI
     setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
     setIsLoading(true);
@@ -58,6 +56,8 @@ export function ChatBot() {
 
       if (result && result.response) {
         setMessages((prev) => [...prev, { role: "model", content: result.response }]);
+      } else {
+        throw new Error("Invalid response from server");
       }
     } catch (error) {
       console.error("ChatBot Client Error:", error);
@@ -65,7 +65,7 @@ export function ChatBot() {
         ...prev, 
         { 
           role: "model", 
-          content: "I'm having a slight technical issue. Please feel free to reach me directly via my contact page or email!" 
+          content: "I'm having a bit of trouble with my system. Please reach out to me directly via my contact page or email!" 
         }
       ]);
     } finally {
@@ -76,11 +76,11 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] h-[600px] max-h-[80vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[450px] h-[650px] max-h-[85vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
             <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Direct Line: Suhail
+              Suhail: Direct Line
             </CardTitle>
             <Button
               variant="ghost"
@@ -115,7 +115,7 @@ export function ChatBot() {
                     </div>
                     <div
                       className={cn(
-                        "p-3 rounded-2xl text-[13px] leading-relaxed",
+                        "p-3 rounded-2xl text-[13px] leading-relaxed font-medium",
                         msg.role === "user"
                           ? "bg-primary text-white rounded-tr-none"
                           : "bg-muted text-foreground rounded-tl-none shadow-sm"
@@ -146,16 +146,16 @@ export function ChatBot() {
               className="flex w-full items-center gap-2"
             >
               <Input
-                placeholder="Ask me anything..."
+                placeholder="Ask me about my experience..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="bg-background/50 border-white/5 h-10 text-xs sm:text-sm focus:border-primary/50 rounded-xl"
+                className="bg-background/50 border-white/5 h-11 text-sm focus:border-primary/50 rounded-xl"
                 disabled={isLoading}
               />
               <Button 
                 type="submit" 
                 size="icon" 
-                className="shrink-0 h-10 w-10 rounded-xl shadow-lg"
+                className="shrink-0 h-11 w-11 rounded-xl shadow-lg"
                 disabled={isLoading || !input.trim()}
               >
                 <Send className="h-4 w-4" />
