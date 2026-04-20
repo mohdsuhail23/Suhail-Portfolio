@@ -26,7 +26,6 @@ export function ChatBot() {
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom of messages
   useEffect(() => {
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
@@ -43,29 +42,26 @@ export function ChatBot() {
     const newUserMessage: Message = { role: "user", content: currentMessage };
     
     // Optimistically update UI
-    const updatedMessages = [...messages, newUserMessage];
-    setMessages(updatedMessages);
+    setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
     setIsLoading(true);
 
     try {
-      // Pass the previous history (excluding the greeting if it helps role alternation, 
-      // but Gemini 1.5 is robust with starting with model)
       const result = await chatWithAssistant({
         message: currentMessage,
-        history: messages.slice(-6), // Send last 6 messages for context
+        history: messages, // Send current messages as history
       });
 
       if (result && result.response) {
         setMessages((prev) => [...prev, { role: "model", content: result.response }]);
       }
     } catch (error) {
-      console.error("ChatBot Error:", error);
+      console.error("ChatBot Client Error:", error);
       setMessages((prev) => [
         ...prev, 
         { 
           role: "model", 
-          content: "I'm having a slight technical issue with my chat system. Please feel free to reach me directly via my contact page or email!" 
+          content: "I'm having a slight technical issue. Please feel free to reach me directly via my contact page or email!" 
         }
       ]);
     } finally {
@@ -76,11 +72,11 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] h-[500px] md:h-[600px] max-h-[75vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] max-h-[calc(100vh-120px)] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
-            <CardTitle className="text-xs font-black uppercase tracking-widest flex items-center gap-2">
+            <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Chat with Mohammad Suhail
+              Direct Message: Suhail
             </CardTitle>
             <Button
               variant="ghost"
@@ -126,11 +122,11 @@ export function ChatBot() {
                   </div>
                 ))}
                 {isLoading && (
-                  <div className="flex gap-3 mr-auto items-center text-muted-foreground animate-in fade-in">
+                  <div className="flex gap-3 mr-auto items-center text-muted-foreground">
                     <div className="w-7 h-7 rounded-full bg-accent/10 border border-white/5 flex items-center justify-center">
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
                     </div>
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] animate-pulse">Suhail is typing...</span>
+                    <span className="text-[8px] font-black uppercase tracking-[0.2em] animate-pulse">Suhail is typing...</span>
                   </div>
                 )}
               </div>
@@ -149,13 +145,13 @@ export function ChatBot() {
                 placeholder="Ask me anything..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="bg-background/50 border-white/5 h-10 text-sm focus:border-primary/50 rounded-xl"
+                className="bg-background/50 border-white/5 h-10 text-xs focus:border-primary/50 rounded-xl"
                 disabled={isLoading}
               />
               <Button 
                 type="submit" 
                 size="icon" 
-                className="shrink-0 h-10 w-10 rounded-xl shadow-lg transition-all hover:scale-105 active:scale-95"
+                className="shrink-0 h-10 w-10 rounded-xl shadow-lg"
                 disabled={isLoading || !input.trim()}
               >
                 <Send className="h-4 w-4" />
@@ -169,11 +165,11 @@ export function ChatBot() {
         onClick={() => setIsOpen(!isOpen)}
         size="lg"
         className={cn(
-          "h-14 w-14 md:h-16 md:w-16 rounded-full shadow-2xl transition-all duration-500 hover:scale-110 active:scale-90 border-4 border-background",
+          "h-14 w-14 md:h-16 md:w-16 rounded-full shadow-2xl transition-all duration-500 hover:scale-110 border-4 border-background",
           isOpen ? "bg-foreground text-background" : "bg-primary text-white"
         )}
       >
-        {isOpen ? <X className="h-6 w-6 md:h-7 md:w-7" /> : <MessageSquare className="h-6 w-6 md:h-7 md:w-7" />}
+        {isOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
       </Button>
     </div>
   );

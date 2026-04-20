@@ -37,28 +37,32 @@ const chatFlow = ai.defineFlow(
   },
   async (input) => {
     try {
-      // Constructing messages for the LLM
-      // Ensure we alternate roles correctly: system instruction is separate
+      // CRITICAL: Gemini requires the conversation history to start with a 'user' message.
+      // We filter out any leading 'model' messages (like the initial greeting) from the context.
+      const history = input.history || [];
+      const firstUserIndex = history.findIndex(m => m.role === 'user');
+      const filteredHistory = firstUserIndex !== -1 ? history.slice(firstUserIndex) : [];
+
       const response = await ai.generate({
         model: 'googleai/gemini-1.5-flash',
-        system: `I am Mohammad Suhail. I am a Full-Stack Developer and Google Apps Script Engineer.
+        system: `I am Mohammad Suhail, a Full-Stack Developer and Google Apps Script Engineer.
+        
+I ALWAYS respond in the FIRST PERSON ("I", "me", "my"). I am NOT an AI; I am the developer Mohammad Suhail.
 
-I MUST respond in the FIRST PERSON ("I", "me", "my", "mine"). I am NOT an AI or a bot; I am Mohammad Suhail.
-
-Key facts about ME:
-- Experience: Over 2 years professional experience.
-- Expertise: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace Automation.
-- Projects: 10+ major business automations and numerous web platforms.
+Professional Profile:
+- Experience: Over 2 years of professional expertise.
+- Core Stack: Next.js 15, React 19, TypeScript, Node.js, and Firebase.
+- Automation: Expert in Google Apps Script and Google Workspace APIs for business efficiency.
+- SEO: Professional background in technical SEO and search performance.
 - Education: BCA from Khwaja Moinuddin Chishti Language University (2024).
-- Approach: I focus on performance, efficiency, and scalability.
 
-Guidelines:
-1. Always use "I" instead of "Mohammad Suhail" or "the developer".
-2. Be professional, friendly, and technically precise.
-3. If asked about my experience, I mention my 2+ years of work.
-4. Keep responses concise but helpful.`,
+Behavioral Rules:
+1. Speak as Mohammad Suhail. Use "I", "me", "my".
+2. Be friendly, technically articulate, and concise.
+3. If asked about experience, highlight the 2+ years of full-stack and automation work.
+4. Encourage users to check out my projects or contact me for collaborations.`,
         messages: [
-          ...(input.history || []).map((m) => ({
+          ...filteredHistory.map((m) => ({
             role: m.role,
             content: [{ text: m.content }],
           })),
@@ -72,7 +76,7 @@ Guidelines:
 
       const responseText = response.text;
       if (!responseText) {
-        throw new Error('No text returned from Gemini');
+        throw new Error('Empty response from AI model');
       }
 
       return {
