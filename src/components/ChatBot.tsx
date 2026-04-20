@@ -20,7 +20,7 @@ export function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "model",
-      content: "Hi! I'm Suhail's AI assistant. How can I help you learn more about his work in full-stack development or automation?",
+      content: "Hi! I'm Suhail. How can I help you learn more about my work in full-stack development or automation?",
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +54,7 @@ export function ChatBot() {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "model", content: "I'm sorry, I'm having trouble connecting right now. Please check the API configuration or try again later." },
+        { role: "model", content: "I'm sorry, I'm having trouble connecting right now. Please reach out to me via email!" },
       ]);
     } finally {
       setIsLoading(false);
@@ -64,10 +64,10 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[350px] sm:w-[400px] h-[500px] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300">
-          <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] h-[500px] max-h-[70vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+          <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
             <CardTitle className="text-sm font-black uppercase tracking-widest flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" /> Assistant
+              <Sparkles className="h-4 w-4 text-primary" /> My Assistant
             </CardTitle>
             <Button
               variant="ghost"
@@ -78,9 +78,9 @@ export function ChatBot() {
               <X className="h-4 w-4" />
             </Button>
           </CardHeader>
-          <CardContent className="p-0 flex-grow relative">
-            <ScrollArea className="h-[380px] p-4" ref={scrollRef}>
-              <div className="space-y-4">
+          <CardContent className="p-0 flex-grow relative overflow-hidden">
+            <ScrollArea className="h-full p-4" ref={scrollRef}>
+              <div className="space-y-4 pb-4">
                 {messages.map((msg, i) => (
                   <div
                     key={i}
@@ -116,13 +116,13 @@ export function ChatBot() {
                     <div className="w-8 h-8 rounded-full bg-accent/10 border border-white/5 flex items-center justify-center">
                       <Loader2 className="h-4 w-4 animate-spin" />
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-widest animate-pulse">Consulting Suhail's brain...</span>
+                    <span className="text-xs font-bold uppercase tracking-widest animate-pulse">Thinking...</span>
                   </div>
                 )}
               </div>
             </ScrollArea>
           </CardContent>
-          <CardFooter className="p-4 border-t bg-muted/20">
+          <CardFooter className="p-4 border-t bg-muted/20 shrink-0">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -131,7 +131,7 @@ export function ChatBot() {
               className="flex w-full items-center gap-2"
             >
               <Input
-                placeholder="Ask about my work..."
+                placeholder="Ask me anything..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="bg-background/50 border-white/5 h-10 text-sm focus:border-primary/50"
