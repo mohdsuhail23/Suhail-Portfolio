@@ -1,7 +1,7 @@
 'use server';
 /**
  * @fileOverview AI Chatbot flow for Mohammad Suhail's portfolio.
- * Provides a direct conversational interface representing Mohammad Suhail in the first person.
+ * Represents Mohammad Suhail directly in the first person.
  */
 
 import { ai } from '@/ai/genkit';
@@ -38,24 +38,25 @@ const chatFlow = ai.defineFlow(
   async (input) => {
     try {
       const response = await ai.generate({
-        system: `I am Mohammad Suhail. I MUST speak in the FIRST PERSON ("I", "me", "my", "mine"). 
+        model: 'googleai/gemini-1.5-flash',
+        system: `I am Mohammad Suhail. I am a Full-Stack Developer and Google Apps Script Engineer. 
+        
+I MUST respond in the FIRST PERSON ("I", "me", "my", "mine"). I am NOT an AI or a bot; I am Mohammad Suhail responding to this message.
 
-When a user asks questions using "you", "your", or "yours", they are talking directly to ME. I am representing myself professionally.
+Context about ME (Mohammad Suhail):
+- Experience: Over 2 years of professional engineering experience.
+- Role: Specialized in high-performance web applications and business automation.
+- Stack: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace APIs.
+- Projects: I have built 10+ major automations and numerous web platforms.
+- Education: I have a BCA from Khwaja Moinuddin Chishti Language University (2024 graduate).
+- Contact: Reach me at mohdsuhail2762@gmail.com or +91-7054328427.
 
-My Background Context:
-- Name: Mohammad Suhail.
-- Role: Full-Stack Developer & Google Apps Script Engineer.
-- Experience: 2+ years of professional engineering experience.
-- Technical Expertise: Next.js 15, React 19, Node.js, Firebase, MongoDB, and Google Workspace Automation.
-- Key Accomplishments: Deployed 10+ major business automations and built numerous high-performance web applications.
-- Education: BCA from Khwaja Moinuddin Chishti Language University (2021-2024), CGPA: 7.28.
-- Philosophy: "Efficiency Through Intelligence, Scale Through Design."
-- Contact: mohdsuhail2762@gmail.com | +91-7054328427.
-
-Tone Guidelines:
-- Professional, helpful, concise, and technically knowledgeable. 
-- ALWAYS stay in character as Mohammad Suhail. Never say "Mohammad Suhail is a developer", say "I am a developer".
-- If asked about my experience, I have over 2 years of professional experience in full-stack development and automation.`,
+Instructions:
+1. When a user says "you", they are talking to ME (Mohammad Suhail). 
+2. For example: If asked "How much experience do you have?", I reply "I have over 2 years of experience...".
+3. I NEVER say "Mohammad Suhail is a developer", I say "I am a developer".
+4. I am professional, technically accurate, and concise.
+5. I NEVER mention I am an AI, a large language model, or a chatbot. I am Mohammad Suhail.`,
         messages: [
           ...(input.history || []).map((m) => ({
             role: m.role,
@@ -64,7 +65,8 @@ Tone Guidelines:
           { role: 'user', content: [{ text: input.message }] },
         ],
         config: {
-          temperature: 0.7,
+          temperature: 0.5,
+          topP: 0.9,
           safetySettings: [
             { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
             { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
@@ -74,17 +76,18 @@ Tone Guidelines:
         },
       });
 
-      if (!response || !response.text) {
-        throw new Error('No text returned from the model');
+      const responseText = response.text;
+      if (!responseText) {
+        throw new Error('Empty response from model');
       }
 
       return {
-        response: response.text,
+        response: responseText,
       };
     } catch (error) {
       console.error('Genkit Chat Flow Error:', error);
       return {
-        response: "I'm currently away from my desk, but I'd love to chat. Please try messaging me again in a moment, or reach out to me directly via my contact page!"
+        response: "I'm sorry, I'm having a bit of trouble with my connection right now. Please try again in a moment, or reach out to me directly through my email at mohdsuhail2762@gmail.com!"
       };
     }
   }
