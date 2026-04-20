@@ -17,7 +17,8 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 60; // Ensure data is updated every minute
+// Revalidate more frequently to see backend changes quickly
+export const revalidate = 30; 
 
 export async function generateStaticParams() {
   let projects: Project[] = [];
@@ -62,11 +63,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   let project: Project | null = null;
   
   try {
+    // Fetch fresh data from Sanity
     project = await client.fetch(projectBySlugQuery, { slug });
   } catch (e) {
     console.error("Project Fetch Error:", e);
   }
 
+  // Fallback to mock data if Sanity fails or project doesn't exist yet
   if (!project) {
     project = MOCK_PROJECTS.find(p => p.slug.current === slug) || null;
   }

@@ -38,9 +38,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
         
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center backdrop-blur-sm p-8 text-center">
-          <p className="text-white/80 mb-6 font-medium text-base leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 line-clamp-3">
+        {/* Hover Overlay - Optimized for readability */}
+        <div className="absolute inset-0 bg-black/85 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center backdrop-blur-md p-8 text-center z-20">
+          <p className="text-white/90 mb-8 font-medium text-base leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 line-clamp-3">
             {project.summary}
           </p>
           <Link
@@ -52,7 +52,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Top Badges */}
-        <div className="absolute top-6 left-6 flex gap-2">
+        <div className="absolute top-6 left-6 flex gap-2 z-10">
           {project.featured && (
             <div className="bg-primary/90 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest backdrop-blur-md flex items-center gap-1.5">
               <Zap className="h-3 w-3 fill-white" /> Featured
