@@ -20,12 +20,13 @@ export function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "model",
-      content: "Hi! I'm Mohammad Suhail. How can I help you today? I can answer questions about my work in full-stack development, automation, or discuss how we can work together.",
+      content: "Hi! I'm Mohammad Suhail. How can I help you today? Feel free to ask about my work in full-stack development or business automation.",
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Scroll to bottom whenever messages or loading state changes
   useEffect(() => {
     if (scrollRef.current) {
       const scrollContainer = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
@@ -41,6 +42,9 @@ export function ChatBot() {
     const currentMessage = input.trim();
     const newUserMessage: Message = { role: "user", content: currentMessage };
     
+    // Save previous messages for history before updating local state
+    const history = [...messages];
+    
     // Optimistically update UI
     setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
@@ -49,7 +53,7 @@ export function ChatBot() {
     try {
       const result = await chatWithAssistant({
         message: currentMessage,
-        history: messages, // Send current messages as history
+        history: history,
       });
 
       if (result && result.response) {
@@ -72,11 +76,11 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] max-h-[calc(100vh-120px)] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] h-[600px] max-h-[80vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
             <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Direct Message: Suhail
+              Direct Line: Suhail
             </CardTitle>
             <Button
               variant="ghost"
@@ -145,7 +149,7 @@ export function ChatBot() {
                 placeholder="Ask me anything..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="bg-background/50 border-white/5 h-10 text-xs focus:border-primary/50 rounded-xl"
+                className="bg-background/50 border-white/5 h-10 text-xs sm:text-sm focus:border-primary/50 rounded-xl"
                 disabled={isLoading}
               />
               <Button 
