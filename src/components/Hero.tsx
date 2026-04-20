@@ -24,7 +24,6 @@ export function Hero({ cvUrl }: HeroProps) {
     if (cvUrl) {
       window.open(cvUrl, '_blank');
     } else {
-      // Fallback or alert if no CV is uploaded yet
       alert("CV is being updated. Please check back shortly or contact me directly.");
     }
   };
@@ -49,11 +48,11 @@ export function Hero({ cvUrl }: HeroProps) {
               Available for new projects
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.85] gradient-text animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 uppercase">
               Building <br /> Scalable <br /> Web Apps & <br /> <span className="text-primary italic">Automations.</span>
             </h1>
 
-            <p className="max-w-xl text-xl md:text-2xl text-muted-foreground font-black tracking-tight leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+            <p className="max-w-xl text-lg md:text-xl lg:text-2xl text-muted-foreground font-black tracking-tight leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
               Full-Stack Developer & <br className="hidden md:block" /> 
               <span className="text-foreground">Google Apps Script Engineer</span>
             </p>
@@ -87,7 +86,7 @@ export function Hero({ cvUrl }: HeroProps) {
 
         {/* Modern Profile Photo Container */}
         <div className="relative flex justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-1000 delay-500">
-          <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
+          <div className="relative w-full max-w-[320px] sm:max-w-[450px] lg:max-w-[380px] xl:max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/5 shadow-2xl">
             <Image
               src={profileImg}
               alt="Professional Portrait"
@@ -95,11 +94,10 @@ export function Hero({ cvUrl }: HeroProps) {
               className="object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
               priority
               data-ai-hint="professional portrait"
-              sizes="(max-width: 768px) 100vw, 450px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 450px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            {/* Overlay Info Card */}
             <div className="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl border-white/10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
               <div className="flex justify-between items-end">
                 <div>
@@ -115,7 +113,6 @@ export function Hero({ cvUrl }: HeroProps) {
             </div>
           </div>
           
-          {/* Decorative Elements */}
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[80px] -z-10" />
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px] -z-10" />
         </div>
