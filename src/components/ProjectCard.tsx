@@ -28,7 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             src={imageSrc}
             alt={project.title}
             fill
-            className="object-cover transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1"
+            className="transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
