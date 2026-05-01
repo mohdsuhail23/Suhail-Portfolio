@@ -41,7 +41,7 @@ export function ChatBot() {
     const currentMessage = input.trim();
     const newUserMessage: Message = { role: "user", content: currentMessage };
     
-    // History sent to server excludes the current message (server appends it)
+    // Pass existing history (excluding current message)
     const history = [...messages];
     
     setMessages((prev) => [...prev, newUserMessage]);
@@ -76,7 +76,7 @@ export function ChatBot() {
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       {isOpen && (
-        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[450px] h-[650px] max-h-[85vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
+        <Card className="mb-4 w-[calc(100vw-3rem)] sm:w-[400px] lg:w-[450px] h-[600px] lg:h-[750px] max-h-[85vh] shadow-2xl border-white/10 glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden flex flex-col">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0 bg-primary/5 shrink-0">
             <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -130,7 +130,7 @@ export function ChatBot() {
                     <div className="w-7 h-7 rounded-full bg-accent/10 border border-white/5 flex items-center justify-center">
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
                     </div>
-                    <span className="text-[8px] font-black uppercase tracking-[0.2em] animate-pulse">Suhail is typing...</span>
+                    <span className="text-[8px] font-black uppercase tracking-[0.2em] animate-pulse">Thinking...</span>
                   </div>
                 )}
               </div>
@@ -146,16 +146,16 @@ export function ChatBot() {
               className="flex w-full items-center gap-2"
             >
               <Input
-                placeholder="Ask me about my experience..."
+                placeholder="Ask me a question..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="bg-background/50 border-white/5 h-11 text-sm focus:border-primary/50 rounded-xl"
+                className="bg-background/50 border-white/5 h-12 text-sm focus:border-primary/50 rounded-xl"
                 disabled={isLoading}
               />
               <Button 
                 type="submit" 
                 size="icon" 
-                className="shrink-0 h-11 w-11 rounded-xl shadow-lg"
+                className="shrink-0 h-12 w-12 rounded-xl shadow-lg"
                 disabled={isLoading || !input.trim()}
               >
                 <Send className="h-4 w-4" />

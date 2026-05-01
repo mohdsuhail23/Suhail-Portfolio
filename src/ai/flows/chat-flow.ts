@@ -37,7 +37,7 @@ const chatFlow = ai.defineFlow(
   },
   async (input) => {
     try {
-      // 1. Prepare history. Gemini requires history to start with a 'user' message
+      // 1. Prepare history. Gemini REQUIRES history to start with a 'user' message
       // and alternate strictly between 'user' and 'model'.
       const rawHistory = input.history || [];
       const cleanedMessages: any[] = [];
@@ -47,7 +47,6 @@ const chatFlow = ai.defineFlow(
         // Skip the initial model greeting if it's the first message
         if (msg.role === 'model' && cleanedMessages.length === 0) continue;
         
-        // Ensure alternating roles
         if (expectingUser && msg.role === 'user') {
           cleanedMessages.push({ role: 'user', content: [{ text: msg.content }] });
           expectingUser = false;
@@ -57,16 +56,14 @@ const chatFlow = ai.defineFlow(
         }
       }
 
-      // 2. Add current message. If the last cleaned message was also 'user', 
-      // we might need to collapse them or ensure the model replied.
-      // But usually, history ends with a 'model' reply before a new user message.
+      // 2. Add current message to the end of history for context
       cleanedMessages.push({
         role: 'user',
         content: [{ text: input.message }]
       });
 
       const response = await ai.generate({
-        model: 'googleai/gemini-1.5-flash',
+        // Model is already set as default in src/ai/genkit.ts
         system: `I am Mohammad Suhail. I am a Full-Stack Developer and Google Apps Script Engineer.
         
 CRITICAL RULES:
@@ -76,8 +73,8 @@ CRITICAL RULES:
 4. I am an expert in Google Apps Script and automation for Google Workspace.
 5. I graduated with a BCA from Khwaja Moinuddin Chishti Language University in 2024.
 6. I am friendly, technical, and professional.
-7. I treat "you" as referring to ME, Mohammad Suhail. "How are you?" means how am I.
-8. If someone asks who I am, I say "I am Mohammad Suhail".`,
+7. If someone asks "Who are you?", I say "I am Mohammad Suhail".
+8. I treat "you" in questions as referring to ME personally.`,
         messages: cleanedMessages,
         config: {
           temperature: 0.7,
